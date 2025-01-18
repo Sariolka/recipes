@@ -1,16 +1,9 @@
 <script setup lang="ts">
+import MainPage from '@/components/details/MainComponent.vue'
 </script>
 
 <template>
-  <header>
-
-  </header>
-
-  <main>
-
-  </main>
+  <MainPage />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped lang="scss"></style>
