@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import logo from '../icons/logo.svg'
+import logo from '../icons/logo.svg';
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import logo from '../icons/logo.svg'
         <h1 class="header__title">Find a Recipe</h1>
       </div>
       <nav class="header__nav">
-        <router-link to="/main" class="header__link"> Main </router-link>
+        <router-link to="/" class="header__link"> Main </router-link>
         <router-link to="/favourites" class="header__link"> Favourites </router-link>
       </nav>
     </div>

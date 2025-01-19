@@ -1,34 +1,41 @@
 <script setup lang="ts">
-import type { CardType } from '@/components/types/types.ts'
-import { computed } from 'vue'
-import { REDIRECT_URL } from '../../../config.ts'
+import type { CardType } from '@/components/types/types.ts';
+import { computed } from 'vue';
+import { REDIRECT_URL } from '../../../config.ts';
 
 const props = defineProps<{
-  card: CardType
-}>()
+  card: CardType;
+}>();
 
 const computedTime = computed(() => {
-  let hours = 0
-  let minutes = 0
+  let hours = 0;
+  let minutes = 0;
   if (props.card.minutes >= 60) {
-    hours = Math.floor(props.card.minutes / 60)
-    minutes = props.card.minutes - hours * 60
-    return `${hours} hours ${minutes} minutes`
+    hours = Math.floor(props.card.minutes / 60);
+    minutes = props.card.minutes - hours * 60;
+    return `${hours} hr ${minutes} min`;
   } else {
-    return `${props.card.minutes} minutes`
+    return `${props.card.minutes} minutes`;
   }
-})
+});
 </script>
 
 <template>
   <li class="card">
     <img class="card__image" :src="card.thumbnailUrl" :alt="card.name" />
+    <button
+      class="card__like"
+      :class="{ card__like_active: card.isSaved }"
+      @click="$emit('save-recipe')"
+    ></button>
     <div class="card__info">
       <h3 class="card__title">{{ card.name }}</h3>
       <span class="card__time-control" v-if="card.minutes !== 0"
-        >Cooking time: {{ computedTime }}</span
+        >Total cooking time: {{ computedTime }}</span
       >
-      <p class="card__description">{{ card.description }}</p>
+      <p class="card__description">
+        {{ !card.description ? "Click 'Show more' to get more information" : card.description }}
+      </p>
       <div class="card__footer">
         <a :href="REDIRECT_URL + `${card.slug}`" class="card__link" target="_blank">SHOW MORE</a>
       </div>
@@ -41,11 +48,12 @@ const computedTime = computed(() => {
   display: flex;
   flex-direction: column;
   width: 350px;
-  height: 520px;
+  height: 530px;
   box-shadow: 0 2px 5px 0 #0000001a;
   background-color: #252525;
   border-radius: 6px;
   cursor: default;
+  position: relative;
 
   &__image {
     width: 350px;
@@ -55,7 +63,7 @@ const computedTime = computed(() => {
     object-fit: cover;
     object-position: center;
     position: relative;
-    background-color: black;
+    background-color: #000;
     background-size: cover;
     background-position: center;
   }
@@ -87,16 +95,34 @@ const computedTime = computed(() => {
   //  background-size: cover;
   //}
 
+  &__like {
+    background-image: url('../icons/mark.svg');
+    width: 27px;
+    height: 27px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    &_active {
+      background-image: url('../icons/mark-fill.svg');
+    }
+  }
+
   &__info {
     display: flex;
     flex-direction: column;
-    padding: 26px 26px;
+    padding: 20px 26px;
     flex-grow: 1;
   }
 
   &__title {
     font-size: 28px;
-    line-height: 28px;
+    line-height: normal;
     color: #d9d9d9;
     font-weight: 400;
     margin-bottom: 2px;

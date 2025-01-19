@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import MainPage from '@/components/details/MainComponent.vue'
+import SuccessView from '@/components/views/SuccessView.vue';
 </script>
 
 <template>
-  <MainPage />
+  <SuccessView />
 </template>
 
 <style scoped lang="scss"></style>

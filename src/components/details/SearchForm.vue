@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import IconLoading from '@/components/icons/IconLoading.vue'
+import { ref } from 'vue';
+import IconLoading from '@/components/icons/IconLoading.vue';
 const props = defineProps<{
-  isLoading: boolean
-}>()
-const emit = defineEmits(['search'])
+  isLoading: boolean;
+}>();
+const emit = defineEmits(['search']);
 
-const query = ref('')
+const query = ref('');
 
 const searchRecipes = () => {
-  emit('search', query.value)
-  query.value = ''
-}
+  emit('search', query.value);
+};
 </script>
 
 <template>
@@ -67,5 +66,11 @@ const searchRecipes = () => {
     width: 16px;
     height: 16px;
   }
+}
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  display: none;
 }
 </style>
