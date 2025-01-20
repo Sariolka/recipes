@@ -17,7 +17,7 @@ const router = createRouter({
       component: FavouritesPage
     },
     { path: '/404', component: ErrorPage },
-    { path: '/:pathMatch(.*)*', component: ErrorPage }
+    { path: '/:pathMatch(.*)*', redirect: '/404' }
   ]
 });
 

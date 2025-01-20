@@ -1,6 +1,6 @@
 import { BASE_URL, HOST, KEY, KEY_NAME, URL_NAME } from '../../config.ts';
 
-export const fetchRecipes = (query: string): Promise<any> => {
+export const fetchRecipes = (query: string, count: number): Promise<any> => {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
 
@@ -18,7 +18,7 @@ export const fetchRecipes = (query: string): Promise<any> => {
         }
       }
     });
-    xhr.open('GET', `${BASE_URL}recipes/list?from=0&size=36&q=${query}`);
+    xhr.open('GET', `${BASE_URL}recipes/list?from=${count}&size=36&q=${query}`);
     xhr.setRequestHeader(KEY_NAME, KEY);
     xhr.setRequestHeader(URL_NAME, HOST);
     xhr.send();

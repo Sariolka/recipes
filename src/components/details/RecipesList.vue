@@ -25,6 +25,9 @@ const props = defineProps<{
 .recipes {
   margin-top: 70px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   &__title {
     display: none;

@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
-import type { CardType } from '@/components/types/types.ts';
+import { computed, onMounted, ref, watch } from 'vue';
+import { VueAwesomePaginate } from 'vue-awesome-paginate';
 import RecipesList from '@/components/details/RecipesList.vue';
+import type { CardType } from '@/components/types/types.ts';
 import { loadSavedRecipes, saveRecipesToLocalStorage } from '@/components/helpers/helpers.ts';
 
 const cards = ref<CardType[]>([]);
+const currentPage = ref(1);
 
 onMounted(() => {
   cards.value = loadSavedRecipes();
@@ -12,6 +14,15 @@ onMounted(() => {
 
 const favouritesCards = computed(() => {
   return cards.value;
+});
+
+const paginatedData = computed(() => {
+  if (!favouritesCards.value || favouritesCards.value.length === 0) {
+    return [];
+  }
+  const start = (currentPage.value - 1) * 36;
+  const end = start + 36;
+  return favouritesCards.value.slice(start, end);
 });
 
 const deleteSavedRecipe = (recipe: CardType) => {
@@ -31,12 +42,30 @@ const deleteSavedRecipe = (recipe: CardType) => {
 watch(cards.value, (newValues) => {
   cards.value = newValues;
 });
+
+const onClickHandler = (page: number) => {
+  currentPage.value = page;
+  return paginatedData;
+};
 </script>
 
 <template>
   <section class="favourites">
-    <RecipesList :cards="favouritesCards" v-if="favouritesCards.length" @save-recipe="deleteSavedRecipe" />
+    <RecipesList
+      :cards="paginatedData"
+      v-if="favouritesCards.length"
+      @save-recipe="deleteSavedRecipe"
+    />
     <span class="favourites__warning" v-else>You don't have any favourite recipes yet</span>
+    <vue-awesome-paginate
+      v-if="favouritesCards.length && favouritesCards.length > 36"
+      class="main__pagination"
+      :total-items="favouritesCards.length"
+      :items-per-page="36"
+      :max-pages-shown="3"
+      v-model="currentPage"
+      @click="onClickHandler"
+    ></vue-awesome-paginate>
   </section>
 </template>
 

@@ -16,3 +16,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding-bottom: 50px;
 }
+
+.pagination-container {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 30px;
+}
+
+.paginate-buttons {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  padding: 4px 15px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.paginate-buttons:hover {
+  color: #ababab;
+}
+
+.active-page {
+  cursor: default;
+  pointer-events: none;
+  font-weight: 700;
+}

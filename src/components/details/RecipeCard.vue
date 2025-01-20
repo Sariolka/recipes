@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { CardType } from '@/components/types/types.ts';
 import { computed } from 'vue';
-import { REDIRECT_URL } from '../../../config.ts';
+import type { CardType } from '@/components/types/types.ts';
+import { REDIRECT_URL, TIME_MINUTES } from '../../../config.ts';
 
 const props = defineProps<{
   card: CardType;
@@ -10,9 +10,9 @@ const props = defineProps<{
 const computedTime = computed(() => {
   let hours = 0;
   let minutes = 0;
-  if (props.card.minutes >= 60) {
-    hours = Math.floor(props.card.minutes / 60);
-    minutes = props.card.minutes - hours * 60;
+  if (props.card.minutes >= TIME_MINUTES) {
+    hours = Math.floor(props.card.minutes / TIME_MINUTES);
+    minutes = props.card.minutes - hours * TIME_MINUTES;
     return `${hours} hr ${minutes} min`;
   } else {
     return `${props.card.minutes} minutes`;
@@ -68,32 +68,32 @@ const computedTime = computed(() => {
     background-position: center;
   }
 
-  //&__image::before {
-  //  width: 350px;
-  //  height: 260px;
-  //  position: absolute;
-  //  font-size: 0;
-  //  background-color: #575757;
-  //  top: 0;
-  //  display: block;
-  //  content: '';
-  //  z-index: 1;
-  //}
-  //
-  //&__image::after {
-  //  display: block;
-  //  position: absolute;
-  //  content: '';
-  //  font-size: 0;
-  //  z-index: 2;
-  //  top: 0;
-  //  left: 0;
-  //  width: 350px;
-  //  height: 260px;
-  //  background-color: #575757;
-  //  background-position: center;
-  //  background-size: cover;
-  //}
+  &__image::before {
+    width: 350px;
+    height: 260px;
+    position: absolute;
+    font-size: 0;
+    background-color: #575757;
+    top: 0;
+    display: block;
+    content: '';
+    z-index: 1;
+  }
+
+  &__image::after {
+    display: block;
+    position: absolute;
+    content: '';
+    font-size: 0;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 260px;
+    background-color: #575757;
+    background-position: center;
+    background-size: cover;
+  }
 
   &__like {
     background-image: url('../icons/mark.svg');

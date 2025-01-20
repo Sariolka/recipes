@@ -25,6 +25,7 @@ import logo from '../icons/logo.svg';
   display: flex;
   flex-direction: column;
   justify-content: end;
+  cursor: default;
 
   &__logo-container {
     display: flex;
