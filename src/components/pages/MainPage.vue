@@ -16,6 +16,9 @@ const totalCount = ref(0);
 const searchQuery = ref('');
 const counter = ref(0);
 const currentPage = ref(1);
+const choosenTime = ref('');
+const choosenMeal = ref('');
+const errorText = ref(false);
 
 // Сохранить/удалить рецепт
 const toggleSave = (recipe: CardType) => {
@@ -37,13 +40,21 @@ const toggleSave = (recipe: CardType) => {
 };
 
 //Поиск
-const getRecipes = async (query: string, counter: number) => {
+const getRecipes = async (query: string, counter: number, timeTag: string, meal: string) => {
+  if (!query) {
+    errorText.value = true;
+    return;
+  }
   isLoading.value = true;
   searchPerformed.value = true;
   searchQuery.value = query;
+  choosenTime.value = timeTag;
+  choosenMeal.value = meal;
   sessionStorage.setItem('searchQuery', searchQuery.value);
+  sessionStorage.setItem('searchTime', choosenTime.value);
+  sessionStorage.setItem('searchMeal', choosenMeal.value);
   try {
-    res.value = (await fetchRecipes(query, counter)) as ResType;
+    res.value = (await fetchRecipes(query, counter, timeTag, meal)) as ResType;
     result.value = res.value.results;
     totalCount.value = res.value.count;
     const savedRecipes = loadSavedRecipes();
@@ -67,6 +78,7 @@ const getRecipes = async (query: string, counter: number) => {
     console.log(err);
   } finally {
     isLoading.value = false;
+    errorText.value = false;
   }
 };
 
@@ -84,7 +96,13 @@ const onClickHandler = async (page: number) => {
   currentPage.value = page;
   sessionStorage.setItem('currentPage', currentPage.value.toString());
   if (lastSearchQuery) {
-    await getRecipes(lastSearchQuery, counter.value);
+    const choosenTime = sessionStorage.getItem('choosenTime')
+      ? sessionStorage.getItem('choosenTime')
+      : '';
+    const choosenMeal = sessionStorage.getItem('choosenMeal')
+      ? sessionStorage.getItem('choosenMeal')
+      : '';
+    await getRecipes(lastSearchQuery, counter.value, choosenTime, choosenMeal);
   }
 };
 
@@ -112,6 +130,7 @@ onMounted(async () => {
 <template>
   <main class="main">
     <SearchForm
+      :errorText="errorText"
       @search="getRecipes"
       class="main__search-form"
       :isLoading="isLoading"

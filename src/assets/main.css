@@ -1,3 +1,4 @@
 @import './base.css';
-@import '../components/vendor/normalize.css';
-@import '../components/vendor/fonts/fonts.css';
+@import 'normalize.css';
+@import './fonts/fonts.css';
+@import './styles.scss';

@@ -5,13 +5,13 @@ import IconLoading from '@/components/icons/IconLoading.vue';
 const props = defineProps<{
   initialQuery: string;
   isLoading: boolean;
+  errorText: boolean;
 }>();
-
 const query = ref(props.initialQuery || '');
 const emit = defineEmits(['search']);
 
 const searchRecipes = () => {
-  emit('search', query.value);
+  emit('search', query.value, 0, selectedTime.value, selectedMeal.value);
 };
 
 const clearInput = () => {
@@ -24,23 +24,78 @@ watch(
     query.value = newValue;
   }
 );
+
+const timeOptions = [
+  { text: 'Choose total cooking time', value: '' },
+  { text: 'Under 15 minutes', value: 'under_15_minutes' },
+  { text: 'Under 30 minutes', value: 'under_30_minutes' },
+  { text: 'Under 45 minutes', value: 'under_45_minutes' },
+  { text: 'Under 1 hour', value: 'under_1_hour' }
+];
+
+const mealOptions = [
+  { text: 'Meals', value: '' },
+  { text: 'Breakfast', value: 'breakfast' },
+  { text: 'Lunch', value: 'lunch' },
+  { text: 'Dinner', value: 'dinner' },
+  { text: 'Desserts', value: 'desserts' },
+  { text: 'Snacks', value: 'snacks' }
+];
+
+const selectedTime = ref(timeOptions[0].value);
+const selectedMeal = ref(mealOptions[0].value);
 </script>
 
 <template>
   <form class="search" action="/search" role="search" method="get" @submit.prevent="searchRecipes">
-    <input type="search" class="search__input" v-model="query" placeholder="Search..." />
-    <IconLoading class="search__loading" v-if="isLoading" />
-    <div class="search__icon" v-else></div>
-    <button class="search__btn-clear" v-if="query" @click="clearInput" type="button"></button>
+    <div class="search__input-container">
+      <input
+        :class="{ 'is-danger': errorText }"
+        class="search__input input is-rounded"
+        type="text"
+        v-model="query"
+        placeholder="Search..."
+      />
+      <p class="search__error" v-if="errorText">АААААА!!!!</p>
+      <IconLoading class="search__loading" v-if="isLoading" />
+      <div class="search__icon" v-else></div>
+      <button class="search__btn-clear" v-if="query" @click="clearInput" type="button"></button>
+    </div>
+    <div class="search__select-container">
+      <div class="search__select select is-rounded is-normal has-icons-left">
+        <select id="time-select" v-model="selectedTime">
+          <option v-for="option in timeOptions" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
+      </div>
+      <div class="search__select select is-rounded is-normal has-icons-left">
+        <select id="time-select" v-model="selectedMeal">
+          <option v-for="option in mealOptions" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
+      </div>
+      <button class="search__button" type="submit">OK</button>
+    </div>
   </form>
 </template>
 
 <style scoped lang="scss">
 .search {
-  position: relative;
+  &__input-container {
+    position: relative;
+  }
+
+  &__select-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+  }
 
   &__input {
-    width: 500px;
+    width: 600px;
     background-color: #fff;
     padding: 12px 16px 12px 40px;
     border-radius: 43px;
@@ -56,6 +111,11 @@ watch(
     &::placeholder {
       color: #252525;
     }
+  }
+
+  &__error {
+    position: absolute;
+    color: red;
   }
 
   &__loading {
@@ -89,6 +149,19 @@ watch(
     background-position: center;
     width: 20px;
     height: 20px;
+  }
+
+  &__button {
+    background-color: #34c759;
+    padding: 11px 30px;
+    border-radius: 43px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: normal;
+    outline: transparent;
+    color: #252525;
   }
 }
 input[type='search']::-webkit-search-decoration,
