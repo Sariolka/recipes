@@ -3,8 +3,7 @@ import RecipesList from '@/components/details/RecipesList.vue';
 import SearchForm from '@/components/details/SearchForm.vue';
 import { onMounted, ref, watch } from 'vue';
 import type { CardType, ResType } from '@/components/types/types.ts';
-import { fetchRecipes } from '@/api/api.ts';
-import { loadSavedRecipes, saveRecipesToLocalStorage } from '@/components/helpers/helpers.ts';
+import { changeSave, deleteRecipe, fetchRecipes, loadSavedRecipes, saveRecipe } from '@/api/api.ts';
 import { VueAwesomePaginate } from 'vue-awesome-paginate';
 
 const res = ref<ResType | null>(null);
@@ -16,31 +15,34 @@ const totalCount = ref(0);
 const searchQuery = ref('');
 const counter = ref(0);
 const currentPage = ref(1);
-const choosenTime = ref('');
-const choosenMeal = ref('');
+const chosenTime = ref('');
+const chosenMeal = ref('');
 const errorText = ref(false);
+const savedRecipes = ref<CardType[]>([]);
 
 // Сохранить/удалить рецепт
-const toggleSave = (recipe: CardType) => {
+const toggleSave = async (recipe: CardType) => {
   const index = cards.value.findIndex((card) => card.id === recipe.id);
   if (index !== -1) {
     cards.value[index].isSaved = !cards.value[index].isSaved;
-    const savedRecipes = loadSavedRecipes();
-    if (cards.value[index].isSaved && index !== recipe.id) {
-      savedRecipes.unshift(recipe);
+    if (cards.value[index].isSaved) {
+      await saveRecipe(recipe);
     } else {
-      const recipeIndex = savedRecipes.findIndex((savedRecipe) => savedRecipe.id === recipe.id);
+      savedRecipes.value = await loadSavedRecipes();
+      const recipeIndex = savedRecipes.value.findIndex(
+        (savedRecipe) => savedRecipe.id === recipe.id
+      );
       if (recipeIndex > -1) {
-        savedRecipes.splice(recipeIndex, 1);
+        savedRecipes.value.splice(recipeIndex, 1);
+        await deleteRecipe(recipe.id);
       }
     }
-    saveRecipesToLocalStorage(savedRecipes);
     sessionStorage.setItem('currentCards', JSON.stringify(cards.value));
   }
 };
 
 //Поиск
-const getRecipes = async (query: string, counter: number, timeTag: string, meal: string) => {
+const getRecipes = async (query: string, counter: number, timeTag?: string, meal?: string) => {
   if (!query) {
     errorText.value = true;
     return;
@@ -48,16 +50,16 @@ const getRecipes = async (query: string, counter: number, timeTag: string, meal:
   isLoading.value = true;
   searchPerformed.value = true;
   searchQuery.value = query;
-  choosenTime.value = timeTag;
-  choosenMeal.value = meal;
+  chosenTime.value = timeTag;
+  chosenMeal.value = meal;
   sessionStorage.setItem('searchQuery', searchQuery.value);
-  sessionStorage.setItem('searchTime', choosenTime.value);
-  sessionStorage.setItem('searchMeal', choosenMeal.value);
+  sessionStorage.setItem('searchTime', chosenTime.value);
+  sessionStorage.setItem('searchMeal', chosenMeal.value);
   try {
     res.value = (await fetchRecipes(query, counter, timeTag, meal)) as ResType;
     result.value = res.value.results;
     totalCount.value = res.value.count;
-    const savedRecipes = loadSavedRecipes();
+    savedRecipes.value = await loadSavedRecipes();
     if (result.value.length) {
       cards.value = result.value.map((recipe: any) => ({
         slug: recipe.slug,
@@ -65,8 +67,8 @@ const getRecipes = async (query: string, counter: number, timeTag: string, meal:
         description: recipe.description,
         thumbnailUrl: recipe.thumbnail_url,
         minutes: recipe.total_time_minutes,
-        id: recipe.id,
-        isSaved: savedRecipes.some((i) => i.id === recipe.id)
+        id: recipe.id.toString(),
+        isSaved: savedRecipes.value.some((i) => i.id === recipe.id)
       }));
     } else {
       cards.value = [];
@@ -92,17 +94,13 @@ watch(
 
 const onClickHandler = async (page: number) => {
   const lastSearchQuery = sessionStorage.getItem('searchQuery');
+  const chosenTime = sessionStorage.getItem('chosenTime');
+  const chosenMeal = sessionStorage.getItem('chosenMeal');
   counter.value = 36 * (page - 1);
   currentPage.value = page;
   sessionStorage.setItem('currentPage', currentPage.value.toString());
   if (lastSearchQuery) {
-    const choosenTime = sessionStorage.getItem('choosenTime')
-      ? sessionStorage.getItem('choosenTime')
-      : '';
-    const choosenMeal = sessionStorage.getItem('choosenMeal')
-      ? sessionStorage.getItem('choosenMeal')
-      : '';
-    await getRecipes(lastSearchQuery, counter.value, choosenTime, choosenMeal);
+    await getRecipes(lastSearchQuery, counter.value, chosenTime, chosenMeal);
   }
 };
 
@@ -115,7 +113,9 @@ onMounted(async () => {
     searchQuery.value = lastSearchQuery;
     if (currentCards) {
       cards.value = JSON.parse(currentCards);
-      totalCount.value = JSON.parse(totalCounter);
+      if (totalCounter) {
+        totalCount.value = JSON.parse(totalCounter);
+      }
     } else {
       cards.value = [];
       totalCount.value = 0;

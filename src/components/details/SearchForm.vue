@@ -56,7 +56,7 @@ const selectedMeal = ref(mealOptions[0].value);
         v-model="query"
         placeholder="Search..."
       />
-      <p class="search__error" v-if="errorText">АААААА!!!!</p>
+      <p class="search__error" v-if="errorText">Please enter a value</p>
       <IconLoading class="search__loading" v-if="isLoading" />
       <div class="search__icon" v-else></div>
       <button class="search__btn-clear" v-if="query" @click="clearInput" type="button"></button>
@@ -115,7 +115,9 @@ const selectedMeal = ref(mealOptions[0].value);
 
   &__error {
     position: absolute;
-    color: red;
+    color: #b91c1c;
+    bottom: -22px;
+    left: 12px;
   }
 
   &__loading {

@@ -4,7 +4,7 @@ export interface CardType {
   description: string;
   thumbnailUrl: string;
   minutes: number;
-  id: number;
+  id: string;
   isSaved: boolean;
 }
 

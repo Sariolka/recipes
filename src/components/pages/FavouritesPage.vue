@@ -3,13 +3,14 @@ import { computed, onMounted, ref, watch } from 'vue';
 import { VueAwesomePaginate } from 'vue-awesome-paginate';
 import RecipesList from '@/components/details/RecipesList.vue';
 import type { CardType } from '@/components/types/types.ts';
-import { loadSavedRecipes, saveRecipesToLocalStorage } from '@/components/helpers/helpers.ts';
+// import { loadSavedRecipes, saveRecipesToLocalStorage } from '@/components/helpers/helpers.ts';
+import { changeSave, deleteRecipe, loadSavedRecipes } from '@/api/api.ts';
 
 const cards = ref<CardType[]>([]);
 const currentPage = ref(1);
 
-onMounted(() => {
-  cards.value = loadSavedRecipes();
+onMounted(async () => {
+  cards.value = await loadSavedRecipes();
 });
 
 const favouritesCards = computed(() => {
@@ -25,17 +26,27 @@ const paginatedData = computed(() => {
   return favouritesCards.value.slice(start, end);
 });
 
-const deleteSavedRecipe = (recipe: CardType) => {
+const deleteSavedRecipe = async (recipe: CardType) => {
   const index = cards.value.findIndex((card) => card.id === recipe.id);
   if (index !== -1) {
     cards.value[index].isSaved = false;
-    const savedRecipes = loadSavedRecipes();
-    const recipeIndex = savedRecipes.findIndex((savedRecipe) => savedRecipe.id === recipe.id);
+    const recipeIndex = cards.value.findIndex(
+      (savedRecipe: CardType) => savedRecipe.id === recipe.id
+    );
     if (recipeIndex > -1) {
-      savedRecipes.splice(recipeIndex, 1);
+      cards.value.splice(recipeIndex, 1);
     }
-    saveRecipesToLocalStorage(savedRecipes);
-    cards.value.splice(index, 1);
+    await changeSave(recipe.id);
+    await deleteRecipe(recipe.id);
+    cards.value = await loadSavedRecipes();
+    const currentCards = JSON.parse(sessionStorage.getItem('currentCards')) || [];
+    const updatedCards = currentCards.map((card) => {
+      if (card.id === recipe.id) {
+        return { ...card, isSaved: false };
+      }
+      return card;
+    });
+    sessionStorage.setItem('currentCards', JSON.stringify(updatedCards));
   }
 };
 

@@ -1,0 +1,32 @@
+{
+  "favourites": [
+    {
+      "id": "4540",
+      "slug": "keto-bacon-cauliflower-mac-n-cheese",
+      "name": "Keto Bacon Cauliflower “Mac” ‘N’ Cheese",
+      "description": "Just because you're on a keto diet doesn't mean you should forsake all comfort food. This super indulgent mac 'n' cheese manages to stay low-carb thanks to one magical ingredient: cauliflower. Add bacon to the mix and you get the perfect dinner. ",
+      "thumbnailUrl": "https://s3.amazonaws.com/video-api-prod/assets/9c1bb662687340a9915714db28d46089/Square_THUMB2.jpg",
+      "minutes": 30,
+      "isSaved": true
+    },
+    {
+      "id": "271",
+      "slug": "ramen-carbonara",
+      "name": "Ramen Carbonara",
+      "description": "Ramen carbonara is a delicious fusion of Italian and Japanese cuisine. This dish features ramen noodles tossed in a creamy egg and cheese sauce, with bacon and black pepper for added flavor.",
+      "thumbnailUrl": "https://img.buzzfeed.com/video-api-prod/assets/407fb60a4ce844ebb84a421b2fbd4029/BFV6427_RamenCarbonara-Thumb1080FB.jpg",
+      "minutes": 25,
+      "isSaved": true
+    },
+    {
+      "id": "48",
+      "slug": "creamy-chicken-penne-pasta",
+      "name": "Creamy Chicken Penne Pasta",
+      "description": "If you're in need of a hug in a bowl, this creamy chicken penne pasta is just the ticket. With tender chicken, perfectly cooked pasta, and a velvety sauce, it's pure comfort in a bowl.",
+      "thumbnailUrl": "https://img.buzzfeed.com/video-api-prod/assets/641e3c1a5f2a48f29b605bff9cbe72b6/BFV10263_CreamyChickenPenne-Thumb1080.jpg",
+      "minutes": 30,
+      "isSaved": true
+    }
+  ],
+  "notes": []
+}
