@@ -1288,22 +1288,14 @@
       ]
     },
     {
-      "id": "5545",
-      "slug": "mediterranean-loaded-french-fry-salad",
-      "name": "Mediterranean Loaded French Fry Salad",
-      "description": "What could make a salad better? Fries, of course! These loaded fries are topped with your favorite Mediterranean toppings, from crunchy cucumbers and onion to creamy chickpeas and feta, brought together with a tangy, herby yogurt sauce.",
-      "thumbnailUrl": "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/227881.jpg",
-      "minutes": 65,
+      "id": "444",
+      "slug": "one-pot-swedish-meatball-pasta",
+      "name": "One-Pot Swedish Meatball Pasta",
+      "description": "Savory Swedish meatballs, pasta, and a creamy sauce combine in this deliciously hearty one-pot meal. ",
+      "thumbnailUrl": "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/37b0c33cf11a481f8189f6c37422b704/BFV8525_One-Pot_Swedish_Meatball_Pasta-FB1080.jpg",
+      "minutes": 32,
       "isSaved": true,
       "tags": [
-        {
-          "display_name": "Mediterranean",
-          "id": 64451,
-          "name": "mediterranean",
-          "parent_tag_name": "european",
-          "root_tag_type": "cuisine",
-          "type": "european"
-        },
         {
           "display_name": "Comfort Food",
           "id": 64462,
@@ -1313,28 +1305,12 @@
           "type": "cooking_style"
         },
         {
-          "display_name": "Gluten-Free",
-          "id": 64465,
-          "name": "gluten_free",
-          "parent_tag_name": "dietary",
-          "root_tag_type": "dietary",
-          "type": "dietary"
-        },
-        {
-          "display_name": "Vegetarian",
-          "id": 64469,
-          "name": "vegetarian",
-          "parent_tag_name": "dietary",
-          "root_tag_type": "dietary",
-          "type": "dietary"
-        },
-        {
-          "display_name": "Appetizers",
-          "id": 64481,
-          "name": "appetizers",
-          "parent_tag_name": "meal",
-          "root_tag_type": "meal",
-          "type": "meal"
+          "display_name": "Easy",
+          "id": 64471,
+          "name": "easy",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
         },
         {
           "display_name": "Dinner",
@@ -1353,57 +1329,9 @@
           "type": "cooking_style"
         },
         {
-          "display_name": "Lunch",
-          "id": 64489,
-          "name": "lunch",
-          "parent_tag_name": "meal",
-          "root_tag_type": "meal",
-          "type": "meal"
-        },
-        {
-          "display_name": "Sides",
-          "id": 64490,
-          "name": "sides",
-          "parent_tag_name": "meal",
-          "root_tag_type": "meal",
-          "type": "meal"
-        },
-        {
-          "display_name": "Snacks",
-          "id": 64491,
-          "name": "snacks",
-          "parent_tag_name": "meal",
-          "root_tag_type": "meal",
-          "type": "meal"
-        },
-        {
-          "display_name": "Deep-Fry",
-          "id": 64493,
-          "name": "deep_fry",
-          "parent_tag_name": "cooking_style",
-          "root_tag_type": "cooking_style",
-          "type": "cooking_style"
-        },
-        {
           "display_name": "Date Night",
           "id": 64500,
           "name": "date_night",
-          "parent_tag_name": "occasion",
-          "root_tag_type": "seasonal",
-          "type": "occasion"
-        },
-        {
-          "display_name": "Game Day",
-          "id": 64501,
-          "name": "game_day",
-          "parent_tag_name": "occasion",
-          "root_tag_type": "seasonal",
-          "type": "occasion"
-        },
-        {
-          "display_name": "Party",
-          "id": 64503,
-          "name": "party",
           "parent_tag_name": "occasion",
           "root_tag_type": "seasonal",
           "type": "occasion"
@@ -1417,12 +1345,12 @@
           "type": "dinner"
         },
         {
-          "display_name": "Summer",
-          "id": 64510,
-          "name": "summer",
-          "parent_tag_name": "seasonal",
-          "root_tag_type": "seasonal",
-          "type": "seasonal"
+          "display_name": "Fusion",
+          "id": 65410,
+          "name": "fusion",
+          "parent_tag_name": "cuisine",
+          "root_tag_type": "cuisine",
+          "type": "cuisine"
         },
         {
           "display_name": "Stove Top",
@@ -1433,36 +1361,28 @@
           "type": "appliance"
         },
         {
-          "display_name": "Mashup",
-          "id": 65852,
-          "name": "mashup",
-          "parent_tag_name": null,
+          "display_name": "Meal Prep",
+          "id": 65853,
+          "name": "meal_prep",
+          "parent_tag_name": "cooking_style",
           "root_tag_type": "cooking_style",
           "type": "cooking_style"
         },
         {
-          "display_name": "Special Occasion",
-          "id": 188967,
-          "name": "special_occasion",
-          "parent_tag_name": "occasion",
-          "root_tag_type": "seasonal",
-          "type": "occasion"
+          "display_name": "One-Pot or Pan",
+          "id": 65855,
+          "name": "one_pot_or_pan",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
         },
         {
-          "display_name": "Oven Mitts",
-          "id": 1247775,
-          "name": "oven_mitts",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
-        },
-        {
-          "display_name": "Peeler",
-          "id": 1247781,
-          "name": "peeler",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
+          "display_name": "Pan Fry",
+          "id": 65859,
+          "name": "pan_fry",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
         },
         {
           "display_name": "Pyrex",
@@ -1481,6 +1401,14 @@
           "type": "equipment"
         },
         {
+          "display_name": "Saute Pan",
+          "id": 1247787,
+          "name": "saute_pan",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
           "display_name": "Tongs",
           "id": 1247790,
           "name": "tongs",
@@ -1489,9 +1417,9 @@
           "type": "equipment"
         },
         {
-          "display_name": "Baking Pan",
-          "id": 1280500,
-          "name": "baking_pan",
+          "display_name": "Wooden Spoon",
+          "id": 1247794,
+          "name": "wooden_spoon",
           "parent_tag_name": null,
           "root_tag_type": "equipment",
           "type": "equipment"
@@ -1505,41 +1433,9 @@
           "type": "equipment"
         },
         {
-          "display_name": "Cooling Rack",
-          "id": 1280502,
-          "name": "cooling_rack",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
-        },
-        {
           "display_name": "Cutting Board",
           "id": 1280503,
           "name": "cutting_board",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
-        },
-        {
-          "display_name": "Liquid Measuring Cup",
-          "id": 1280506,
-          "name": "liquid_measuring_cup",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
-        },
-        {
-          "display_name": "Dry Measuring Cups",
-          "id": 1280507,
-          "name": "dry_measuring_cups",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
-        },
-        {
-          "display_name": "Measuring Spoons",
-          "id": 1280508,
-          "name": "measuring_spoons",
           "parent_tag_name": null,
           "root_tag_type": "equipment",
           "type": "equipment"
@@ -1553,20 +1449,44 @@
           "type": "equipment"
         },
         {
-          "display_name": "Spider",
-          "id": 1280514,
-          "name": "spider",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
-        },
-        {
-          "display_name": "McCormick Seasoned Pro",
-          "id": 3956651,
-          "name": "mccormick_seasoned_pro",
+          "display_name": "McCormick Easy Dinner",
+          "id": 5143247,
+          "name": "mccormick_easy_dinner",
           "parent_tag_name": null,
           "root_tag_type": "business_tags",
           "type": "business_tags"
+        },
+        {
+          "display_name": "Swedish",
+          "id": 6953040,
+          "name": "swedish",
+          "parent_tag_name": "european",
+          "root_tag_type": "cuisine",
+          "type": "european"
+        },
+        {
+          "display_name": "McCormick UGC One Pot Pasta",
+          "id": 6986105,
+          "name": "mccormick_ugc_one_pot_pasta",
+          "parent_tag_name": null,
+          "root_tag_type": "feature_page",
+          "type": "feature_page"
+        },
+        {
+          "display_name": "Shoppable Recipes Family Dinner",
+          "id": 7336056,
+          "name": "shoppable_recipes_family_dinner",
+          "parent_tag_name": null,
+          "root_tag_type": "feature_page",
+          "type": "feature_page"
+        },
+        {
+          "display_name": "Under 45 Minutes",
+          "id": 8091747,
+          "name": "under_45_minutes",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
         },
         {
           "display_name": "Under 1 Hour",
@@ -1577,6 +1497,22 @@
           "type": "difficulty"
         },
         {
+          "display_name": "High-Protein",
+          "id": 8091917,
+          "name": "high_protein",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "High-Fiber",
+          "id": 8091920,
+          "name": "high_fiber",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
           "display_name": "Meal",
           "id": 9295813,
           "name": "meal",
@@ -1585,12 +1521,36 @@
           "type": "meal"
         },
         {
-          "display_name": "Salads",
-          "id": 9299495,
-          "name": "salads",
-          "parent_tag_name": "lunch",
+          "display_name": "Beef",
+          "id": 9299515,
+          "name": "beef",
+          "parent_tag_name": "dinner",
           "root_tag_type": "meal",
-          "type": "lunch"
+          "type": "dinner"
+        },
+        {
+          "display_name": "Pasta",
+          "id": 9299522,
+          "name": "pasta",
+          "parent_tag_name": "dinner",
+          "root_tag_type": "meal",
+          "type": "dinner"
+        },
+        {
+          "display_name": "Eggs",
+          "id": 10623588,
+          "name": "eggs",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Gluten",
+          "id": 10623589,
+          "name": "gluten",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
         },
         {
           "display_name": "Dairy",

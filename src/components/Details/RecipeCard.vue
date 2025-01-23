@@ -96,7 +96,7 @@ const computedTime = computed(() => {
   }
 
   &__like {
-    background-image: url('../icons/mark.svg');
+    background-image: url('../Icons/mark.svg');
     width: 27px;
     height: 27px;
     background-size: contain;
@@ -109,7 +109,7 @@ const computedTime = computed(() => {
     cursor: pointer;
 
     &_active {
-      background-image: url('../icons/mark-fill.svg');
+      background-image: url('../Icons/mark-fill.svg');
     }
   }
 

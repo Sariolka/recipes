@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 import { VueAwesomePaginate } from 'vue-awesome-paginate';
-import RecipesList from '@/components/details/RecipesList.vue';
-import SearchForm from '@/components/details/SearchForm.vue';
+import RecipesList from '@/components/Details/RecipesList.vue';
+import SearchForm from '@/components/Details/SearchForm.vue';
 import type { CardType, ResType } from '@/components/types/types.ts';
 import { deleteRecipe, fetchRecipes, loadSavedRecipes, saveRecipe } from '@/api/api.ts';
 import { CARDS_COUNT } from '../../../config.ts';
