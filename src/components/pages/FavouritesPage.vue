@@ -3,14 +3,14 @@ import { computed, onMounted, ref, watch } from 'vue';
 import { VueAwesomePaginate } from 'vue-awesome-paginate';
 import RecipesList from '@/components/details/RecipesList.vue';
 import type { CardType } from '@/components/types/types.ts';
-// import { loadSavedRecipes, saveRecipesToLocalStorage } from '@/components/helpers/helpers.ts';
 import { changeSave, deleteRecipe, loadSavedRecipes } from '@/api/api.ts';
 
 const cards = ref<CardType[]>([]);
 const currentPage = ref(1);
 
 onMounted(async () => {
-  cards.value = await loadSavedRecipes();
+  const cardsArray = await loadSavedRecipes();
+  cards.value = cardsArray.reverse();
 });
 
 const favouritesCards = computed(() => {
@@ -38,15 +38,19 @@ const deleteSavedRecipe = async (recipe: CardType) => {
     }
     await changeSave(recipe.id);
     await deleteRecipe(recipe.id);
-    cards.value = await loadSavedRecipes();
-    const currentCards = JSON.parse(sessionStorage.getItem('currentCards')) || [];
-    const updatedCards = currentCards.map((card) => {
-      if (card.id === recipe.id) {
-        return { ...card, isSaved: false };
-      }
-      return card;
-    });
-    sessionStorage.setItem('currentCards', JSON.stringify(updatedCards));
+    const updatedCardsArray = await loadSavedRecipes();
+    cards.value = [...updatedCardsArray.reverse()];
+    const currentCardsString = sessionStorage.getItem('currentCards');
+    if (currentCardsString) {
+      const currentCards = JSON.parse(currentCardsString);
+      const updatedCards = currentCards.map((card: CardType) => {
+        if (card.id === recipe.id) {
+          return { ...card, isSaved: false };
+        }
+        return card;
+      });
+      sessionStorage.setItem('currentCards', JSON.stringify(updatedCards));
+    }
   }
 };
 

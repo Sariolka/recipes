@@ -6,6 +6,7 @@ export interface CardType {
   minutes: number;
   id: string;
   isSaved: boolean;
+  tags: object[];
 }
 
 export interface ResType {

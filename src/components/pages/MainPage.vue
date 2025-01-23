@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { onMounted, ref, watch } from 'vue';
+import { VueAwesomePaginate } from 'vue-awesome-paginate';
 import RecipesList from '@/components/details/RecipesList.vue';
 import SearchForm from '@/components/details/SearchForm.vue';
-import { onMounted, ref, watch } from 'vue';
 import type { CardType, ResType } from '@/components/types/types.ts';
-import { changeSave, deleteRecipe, fetchRecipes, loadSavedRecipes, saveRecipe } from '@/api/api.ts';
-import { VueAwesomePaginate } from 'vue-awesome-paginate';
+import { deleteRecipe, fetchRecipes, loadSavedRecipes, saveRecipe } from '@/api/api.ts';
 
 const res = ref<ResType | null>(null);
 const result = ref<any[]>([]);
@@ -50,11 +50,14 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
   isLoading.value = true;
   searchPerformed.value = true;
   searchQuery.value = query;
-  chosenTime.value = timeTag;
-  chosenMeal.value = meal;
-  sessionStorage.setItem('searchQuery', searchQuery.value);
-  sessionStorage.setItem('searchTime', chosenTime.value);
-  sessionStorage.setItem('searchMeal', chosenMeal.value);
+  chosenTime.value = timeTag || '';
+  chosenMeal.value = meal || '';
+  const lastSearchObject = {
+    query: searchQuery.value,
+    time: chosenTime.value || '',
+    meal: chosenMeal.value || ''
+  };
+  sessionStorage.setItem('lastSearchObject', JSON.stringify(lastSearchObject));
   try {
     res.value = (await fetchRecipes(query, counter, timeTag, meal)) as ResType;
     result.value = res.value.results;
@@ -68,7 +71,8 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
         thumbnailUrl: recipe.thumbnail_url,
         minutes: recipe.total_time_minutes,
         id: recipe.id.toString(),
-        isSaved: savedRecipes.value.some((i) => i.id === recipe.id)
+        isSaved: savedRecipes.value.some((i) => i.id === recipe.id),
+        tags: recipe.tags
       }));
     } else {
       cards.value = [];
@@ -92,10 +96,19 @@ watch(
   { deep: true }
 );
 
+//Работа пагинации
 const onClickHandler = async (page: number) => {
-  const lastSearchQuery = sessionStorage.getItem('searchQuery');
-  const chosenTime = sessionStorage.getItem('chosenTime');
-  const chosenMeal = sessionStorage.getItem('chosenMeal');
+  const lastSearchString = sessionStorage.getItem('lastSearchObject');
+  let lastSearchQuery = '';
+  let chosenTime = '';
+  let chosenMeal = '';
+
+  if (lastSearchString) {
+    const lastSearch = JSON.parse(lastSearchString);
+    lastSearchQuery = lastSearch.query || '';
+    chosenTime = lastSearch.time || '';
+    chosenMeal = lastSearch.meal || '';
+  }
   counter.value = 36 * (page - 1);
   currentPage.value = page;
   sessionStorage.setItem('currentPage', currentPage.value.toString());
@@ -104,10 +117,15 @@ const onClickHandler = async (page: number) => {
   }
 };
 
+//Начальная загрузка
 onMounted(async () => {
-  const lastSearchQuery = sessionStorage.getItem('searchQuery');
-  const currentCards = sessionStorage.getItem('currentCards');
+  const lastSearchObject = sessionStorage.getItem('lastSearchObject');
+  let lastSearchQuery = '';
+  if (lastSearchObject) {
+    lastSearchQuery = JSON.parse(lastSearchObject).query;
+  }
   const savedCurrentPage = sessionStorage.getItem('currentPage');
+  const currentCards = sessionStorage.getItem('currentCards');
   const totalCounter = sessionStorage.getItem('totalCount');
   if (lastSearchQuery) {
     searchQuery.value = lastSearchQuery;

@@ -1,15 +1,6 @@
 {
   "favourites": [
     {
-      "id": "4540",
-      "slug": "keto-bacon-cauliflower-mac-n-cheese",
-      "name": "Keto Bacon Cauliflower “Mac” ‘N’ Cheese",
-      "description": "Just because you're on a keto diet doesn't mean you should forsake all comfort food. This super indulgent mac 'n' cheese manages to stay low-carb thanks to one magical ingredient: cauliflower. Add bacon to the mix and you get the perfect dinner. ",
-      "thumbnailUrl": "https://s3.amazonaws.com/video-api-prod/assets/9c1bb662687340a9915714db28d46089/Square_THUMB2.jpg",
-      "minutes": 30,
-      "isSaved": true
-    },
-    {
       "id": "271",
       "slug": "ramen-carbonara",
       "name": "Ramen Carbonara",
@@ -19,13 +10,570 @@
       "isSaved": true
     },
     {
-      "id": "48",
-      "slug": "creamy-chicken-penne-pasta",
-      "name": "Creamy Chicken Penne Pasta",
-      "description": "If you're in need of a hug in a bowl, this creamy chicken penne pasta is just the ticket. With tender chicken, perfectly cooked pasta, and a velvety sauce, it's pure comfort in a bowl.",
-      "thumbnailUrl": "https://img.buzzfeed.com/video-api-prod/assets/641e3c1a5f2a48f29b605bff9cbe72b6/BFV10263_CreamyChickenPenne-Thumb1080.jpg",
+      "id": "4504",
+      "slug": "chai-spiced-plum-polenta-cake",
+      "name": "Chai-Spiced Plum Polenta Cake",
+      "description": "This Chai Spiced Plum Polenta Cake is a unique and flavorful dessert. The cake is moist and tender with a subtle chai flavor, while the plums add a fruity and tart contrast. The polenta adds a slight crunch and texture to the cake.",
+      "thumbnailUrl": "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/186439.jpg",
+      "minutes": 75,
+      "isSaved": true,
+      "tags": [
+        {
+          "display_name": "Indian",
+          "id": 64452,
+          "name": "indian",
+          "parent_tag_name": "asian",
+          "root_tag_type": "cuisine",
+          "type": "asian"
+        },
+        {
+          "display_name": "Dairy-Free",
+          "id": 64463,
+          "name": "dairy_free",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "Gluten-Free",
+          "id": 64465,
+          "name": "gluten_free",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "Healthy",
+          "id": 64466,
+          "name": "healthy",
+          "parent_tag_name": null,
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Vegetarian",
+          "id": 64469,
+          "name": "vegetarian",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "Easy",
+          "id": 64471,
+          "name": "easy",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Christmas",
+          "id": 64473,
+          "name": "christmas",
+          "parent_tag_name": "holidays",
+          "root_tag_type": "seasonal",
+          "type": "holidays"
+        },
+        {
+          "display_name": "Thanksgiving",
+          "id": 64479,
+          "name": "thanksgiving",
+          "parent_tag_name": "holidays",
+          "root_tag_type": "seasonal",
+          "type": "holidays"
+        },
+        {
+          "display_name": "Desserts",
+          "id": 64485,
+          "name": "desserts",
+          "parent_tag_name": "meal",
+          "root_tag_type": "meal",
+          "type": "meal"
+        },
+        {
+          "display_name": "Baking",
+          "id": 64492,
+          "name": "baking",
+          "parent_tag_name": "appliance",
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "Party",
+          "id": 64503,
+          "name": "party",
+          "parent_tag_name": "occasion",
+          "root_tag_type": "seasonal",
+          "type": "occasion"
+        },
+        {
+          "display_name": "Fall",
+          "id": 64508,
+          "name": "fall",
+          "parent_tag_name": "seasonal",
+          "root_tag_type": "seasonal",
+          "type": "seasonal"
+        },
+        {
+          "display_name": "Winter",
+          "id": 64511,
+          "name": "winter",
+          "parent_tag_name": "seasonal",
+          "root_tag_type": "seasonal",
+          "type": "seasonal"
+        },
+        {
+          "display_name": "Indulgent Sweets",
+          "id": 65850,
+          "name": "indulgent_sweets",
+          "parent_tag_name": null,
+          "root_tag_type": "occasion",
+          "type": "occasion"
+        },
+        {
+          "display_name": "Big Batch",
+          "id": 65851,
+          "name": "big_batch",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Bakery Goods",
+          "id": 65857,
+          "name": "bakery_goods",
+          "parent_tag_name": "appliance",
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "Special Occasion",
+          "id": 188967,
+          "name": "special_occasion",
+          "parent_tag_name": "occasion",
+          "root_tag_type": "seasonal",
+          "type": "occasion"
+        },
+        {
+          "display_name": "Cake Pan",
+          "id": 1247768,
+          "name": "cake_pan",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Oven Mitts",
+          "id": 1247775,
+          "name": "oven_mitts",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Pyrex",
+          "id": 1247785,
+          "name": "pyrex",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Wooden Spoon",
+          "id": 1247794,
+          "name": "wooden_spoon",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Chef's Knife",
+          "id": 1280501,
+          "name": "chefs_knife",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Liquid Measuring Cup",
+          "id": 1280506,
+          "name": "liquid_measuring_cup",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Dry Measuring Cups",
+          "id": 1280507,
+          "name": "dry_measuring_cups",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Mixing Bowl",
+          "id": 1280510,
+          "name": "mixing_bowl",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Under 45 Minutes",
+          "id": 8091747,
+          "name": "under_45_minutes",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Under 1 Hour",
+          "id": 8091748,
+          "name": "under_1_hour",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "High-Protein",
+          "id": 8091917,
+          "name": "high_protein",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Low-Sugar",
+          "id": 8091918,
+          "name": "low_sugar",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "High-Fiber",
+          "id": 8091920,
+          "name": "high_fiber",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Seasonal",
+          "id": 9295812,
+          "name": "seasonal",
+          "parent_tag_name": null,
+          "root_tag_type": "seasonal",
+          "type": "seasonal"
+        },
+        {
+          "display_name": "Cakes",
+          "id": 9299665,
+          "name": "cakes",
+          "parent_tag_name": "desserts",
+          "root_tag_type": "meal",
+          "type": "desserts"
+        },
+        {
+          "display_name": "Eggs",
+          "id": 10623588,
+          "name": "eggs",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Dairy",
+          "id": 10623608,
+          "name": "dairy",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Tree nuts",
+          "id": 10640006,
+          "name": "tree_nuts",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        }
+      ]
+    },
+    {
+      "id": "1655",
+      "slug": "healthy-banana-pancakes",
+      "name": "Healthy Banana Pancakes",
+      "description": "These pancakes are fluffy, moist, and delicious, and best of all, they're healthy! Made with ripe bananas, whole wheat flour, and no added sugar, they're a guilt-free breakfast option.",
+      "thumbnailUrl": "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/5f6e823f41bb4779829a1486cbbbfa12/BFV18275_HealthyPancakes4Ways_FB1080SQ.jpg",
       "minutes": 30,
-      "isSaved": true
+      "isSaved": true,
+      "tags": [
+        {
+          "display_name": "North American",
+          "id": 64444,
+          "name": "north_american",
+          "parent_tag_name": "cuisine",
+          "root_tag_type": "cuisine",
+          "type": "cuisine"
+        },
+        {
+          "display_name": "Dairy-Free",
+          "id": 64463,
+          "name": "dairy_free",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "Gluten-Free",
+          "id": 64465,
+          "name": "gluten_free",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "Healthy",
+          "id": 64466,
+          "name": "healthy",
+          "parent_tag_name": null,
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Vegetarian",
+          "id": 64469,
+          "name": "vegetarian",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "5 Ingredients or Less",
+          "id": 64470,
+          "name": "5_ingredients_or_less",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Easy",
+          "id": 64471,
+          "name": "easy",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Under 30 Minutes",
+          "id": 64472,
+          "name": "under_30_minutes",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Breakfast",
+          "id": 64483,
+          "name": "breakfast",
+          "parent_tag_name": "meal",
+          "root_tag_type": "meal",
+          "type": "meal"
+        },
+        {
+          "display_name": "Brunch",
+          "id": 64484,
+          "name": "brunch",
+          "parent_tag_name": "meal",
+          "root_tag_type": "meal",
+          "type": "meal"
+        },
+        {
+          "display_name": "Kid-Friendly",
+          "id": 64488,
+          "name": "kid_friendly",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Cast Iron Pan",
+          "id": 65840,
+          "name": "cast_iron_pan",
+          "parent_tag_name": "appliance",
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "Stove Top",
+          "id": 65848,
+          "name": "stove_top",
+          "parent_tag_name": null,
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "One-Pot or Pan",
+          "id": 65855,
+          "name": "one_pot_or_pan",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Pan Fry",
+          "id": 65859,
+          "name": "pan_fry",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Pyrex",
+          "id": 1247785,
+          "name": "pyrex",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Saute Pan",
+          "id": 1247787,
+          "name": "saute_pan",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Spatula",
+          "id": 1247788,
+          "name": "spatula",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Dry Measuring Cups",
+          "id": 1280507,
+          "name": "dry_measuring_cups",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Measuring Spoons",
+          "id": 1280508,
+          "name": "measuring_spoons",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Mixing Bowl",
+          "id": 1280510,
+          "name": "mixing_bowl",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Under 45 Minutes",
+          "id": 8091747,
+          "name": "under_45_minutes",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Under 1 Hour",
+          "id": 8091748,
+          "name": "under_1_hour",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Low-Calorie",
+          "id": 8091916,
+          "name": "low_calorie",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Low-Fat",
+          "id": 8091919,
+          "name": "low_fat",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "High-Fiber",
+          "id": 8091920,
+          "name": "high_fiber",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Dietary",
+          "id": 9295814,
+          "name": "dietary",
+          "parent_tag_name": null,
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "Sweet Breakfasts",
+          "id": 9299364,
+          "name": "sweet_breakfasts",
+          "parent_tag_name": "breakfast",
+          "root_tag_type": "meal",
+          "type": "breakfast"
+        },
+        {
+          "display_name": "Pancakes",
+          "id": 9299397,
+          "name": "pancakes",
+          "parent_tag_name": "sweet_breakfasts",
+          "root_tag_type": "meal",
+          "type": "sweet_breakfasts"
+        },
+        {
+          "display_name": "Eggs",
+          "id": 10623588,
+          "name": "eggs",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Tree nuts",
+          "id": 10640006,
+          "name": "tree_nuts",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Budget",
+          "id": 10742773,
+          "name": "budget",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Halal",
+          "id": 10742774,
+          "name": "halal",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        }
+      ]
     }
   ],
   "notes": []
