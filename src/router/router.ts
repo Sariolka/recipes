@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import MainPage from '@/components/pages/MainPage.vue';
-import FavouritesPage from '@/components/pages/FavouritesPage.vue';
-import ErrorPage from '@/components/pages/ErrorPage.vue';
+import MainPage from '@/components/Pages/MainPage.vue';
+import FavouritesPage from '@/components/Pages/FavouritesPage.vue';
+import ErrorPage from '@/components/Pages/ErrorPage.vue';
 
 const router = createRouter({
   history: createWebHistory(),

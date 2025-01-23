@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
-import HeaderComponent from '@/components/details/HeaderComponent.vue';
-import videoWebm from '@/components/video/video-webm.webm';
-import video from '@/components/video/video.mp4';
+import HeaderComponent from '@/components/Details/HeaderComponent.vue';
+import videoWebm from '@/components/Video/video-webm.webm';
+import video from '@/components/Video/video.mp4';
 
 const route = useRoute();
 </script>

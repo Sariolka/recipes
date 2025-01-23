@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import logo from '../icons/logo.svg';
+import logo from '@/components/Icons/logo.svg';
 </script>
 
 <template>
@@ -41,6 +41,11 @@ import logo from '../icons/logo.svg';
     margin-top: auto;
     margin-bottom: auto;
     justify-content: space-between;
+
+    @media screen and (max-width: 800px) {
+      padding-left: 65px;
+      padding-right: 65px;
+    }
   }
 
   &__border {
@@ -67,6 +72,7 @@ import logo from '../icons/logo.svg';
     color: #34c759;
     margin-top: 0;
     margin-bottom: 0;
+    white-space: nowrap;
   }
 
   &__link {
