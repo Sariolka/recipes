@@ -8,8 +8,8 @@ const route = useRoute();
 </script>
 
 <template>
-  <section class="page">
-    <video autoPlay playsInline muted loop class="page__video">
+  <section class="page" :class="{ 'page_type-favourite': route.path !== '/' }">
+    <video autoPlay playsInline muted loop class="page__video" v-if="route.path === '/'">
       <source :src="videoWebm" type="video/webm" />
       <source :src="video" type="video/mp4" />
       Ваш браузер не поддерживает встроенные видео
@@ -21,7 +21,13 @@ const route = useRoute();
 
 <style lang="scss" scoped>
 .page {
-  //background-color: #1A1A1A;
+  &_type-favourite {
+    background-color: #1a1a1a;
+    min-height: 100vh;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   &__video {
     height: 100vh;

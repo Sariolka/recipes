@@ -9,5 +9,5 @@ export const BASE_URL = 'https://tasty.p.rapidapi.com/'
 export const REDIRECT_URL = 'https://tasty.co/recipe/'
 
 export const TIME_MINUTES = 60
-
+export const CARDS_COUNT = 36
 

@@ -5,6 +5,7 @@ import RecipesList from '@/components/details/RecipesList.vue';
 import SearchForm from '@/components/details/SearchForm.vue';
 import type { CardType, ResType } from '@/components/types/types.ts';
 import { deleteRecipe, fetchRecipes, loadSavedRecipes, saveRecipe } from '@/api/api.ts';
+import { CARDS_COUNT } from '../../../config.ts';
 
 const res = ref<ResType | null>(null);
 const result = ref<any[]>([]);
@@ -109,7 +110,7 @@ const onClickHandler = async (page: number) => {
     chosenTime = lastSearch.time || '';
     chosenMeal = lastSearch.meal || '';
   }
-  counter.value = 36 * (page - 1);
+  counter.value = CARDS_COUNT * (page - 1);
   currentPage.value = page;
   sessionStorage.setItem('currentPage', currentPage.value.toString());
   if (lastSearchQuery) {
@@ -159,10 +160,10 @@ onMounted(async () => {
       Nothing found
     </p>
     <vue-awesome-paginate
-      v-if="cards.length && totalCount > 36"
+      v-if="cards.length && totalCount > CARDS_COUNT"
       class="main__pagination"
       :total-items="totalCount"
-      :items-per-page="36"
+      :items-per-page="CARDS_COUNT"
       :max-pages-shown="3"
       v-model="currentPage"
       @click="onClickHandler"
