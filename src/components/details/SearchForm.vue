@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import IconLoading from '@/components/icons/IconLoading.vue';
+import { mealOptions, timeOptions } from '@/components/constants/constants.ts';
 
 const props = defineProps<{
   initialQuery: string;
   isLoading: boolean;
   errorText: boolean;
 }>();
+
 const query = ref(props.initialQuery || '');
 const emit = defineEmits(['search']);
+const selectedTime = ref(timeOptions[0].value);
+const selectedMeal = ref(mealOptions[0].value);
 
 const searchRecipes = () => {
   emit('search', query.value, 0, selectedTime.value, selectedMeal.value);
@@ -24,26 +28,6 @@ watch(
     query.value = newValue;
   }
 );
-
-const timeOptions = [
-  { text: 'Choose total cooking time', value: '' },
-  { text: 'Under 15 minutes', value: 'under_15_minutes' },
-  { text: 'Under 30 minutes', value: 'under_30_minutes' },
-  { text: 'Under 45 minutes', value: 'under_45_minutes' },
-  { text: 'Under 1 hour', value: 'under_1_hour' }
-];
-
-const mealOptions = [
-  { text: 'Meals', value: '' },
-  { text: 'Breakfast', value: 'breakfast' },
-  { text: 'Lunch', value: 'lunch' },
-  { text: 'Dinner', value: 'dinner' },
-  { text: 'Desserts', value: 'desserts' },
-  { text: 'Snacks', value: 'snacks' }
-];
-
-const selectedTime = ref(timeOptions[0].value);
-const selectedMeal = ref(mealOptions[0].value);
 </script>
 
 <template>
