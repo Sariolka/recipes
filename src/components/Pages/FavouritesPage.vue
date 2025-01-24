@@ -5,10 +5,13 @@ import RecipesList from '@/components/Details/RecipesList.vue';
 import type { CardType } from '@/components/types/types.ts';
 import { changeSave, deleteRecipe, loadSavedRecipes } from '@/api/api.ts';
 import { CARDS_COUNT } from '../../../config.ts';
+import { useAuthStore } from '@/components/Stores/auth.ts';
+import router from '@/router/router.ts';
 
 const cards = ref<CardType[]>([]);
 const currentPage = ref(1);
 const activeStatus = ref('all');
+const store = useAuthStore();
 
 onMounted(async () => {
   const cardsArray = await loadSavedRecipes();
@@ -162,8 +165,8 @@ const handleChooseMeal = (section: string) => {
 <style scoped lang="scss">
 .favourites {
   display: flex;
-  //flex-direction: column;
-  //align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
 
   &__warning {
     margin-top: 150px;
@@ -183,7 +186,6 @@ const handleChooseMeal = (section: string) => {
 
   &__nav {
     margin-top: 70px;
-
     width: 120px;
   }
 

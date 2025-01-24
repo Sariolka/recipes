@@ -2,10 +2,14 @@
 import { computed } from 'vue';
 import type { CardType } from '@/components/types/types.ts';
 import { REDIRECT_URL, TIME_MINUTES } from '../../../config.ts';
+import { useAuthStore } from '@/components/Stores/auth.ts';
+const store = useAuthStore();
 
 const props = defineProps<{
   card: CardType;
 }>();
+
+const isAuthenticated = computed(() => store.token);
 
 const computedTime = computed(() => {
   let hours = 0;
@@ -24,6 +28,7 @@ const computedTime = computed(() => {
   <li class="card">
     <img class="card__image" :src="card.thumbnailUrl" :alt="card.name" />
     <button
+      v-if="isAuthenticated"
       class="card__like"
       :class="{ card__like_active: card.isSaved }"
       @click="$emit('save-recipe')"

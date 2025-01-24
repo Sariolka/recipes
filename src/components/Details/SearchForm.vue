@@ -54,7 +54,7 @@ watch(
         </select>
       </div>
       <div class="search__select select is-rounded is-normal has-icons-left">
-        <select id="time-select" v-model="selectedMeal">
+        <select id="meal-select" v-model="selectedMeal">
           <option v-for="option in mealOptions" :key="option.value" :value="option.value">
             {{ option.text }}
           </option>

@@ -11,7 +11,7 @@ npm install
 
 ```sh
 npm run dev
-npx json-server db.json 
+npm start
 ```
 
 ### Type-Check, Compile and Minify for Production
