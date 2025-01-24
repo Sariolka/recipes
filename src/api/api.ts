@@ -1,5 +1,7 @@
 import { BASE_URL, HOST, KEY, KEY_NAME, URL_NAME } from '../../config.ts';
 import type { CardType } from '@/components/types/types.ts';
+// import { useAuthStore } from '@/components/Stores/auth.ts'
+// const store  = useAuthStore()
 
 export const fetchRecipes = (
   query: string,
@@ -46,7 +48,9 @@ export const processResponse = async <T>(response: Response): T => {
       'Произошла ошибка при попытке получить данные с сервера. Статус ответа не является успешным'
     );
   }
+
   const data = await response.json();
+  console.log(data);
   return data as T;
 };
 
@@ -61,6 +65,7 @@ export const get = async <T>(path: string): Promise<T> => {
 
 const makeHeaders = () => {
   return {
+    'Content-Type': 'application/json',
     Accept: 'application/json'
   };
 };
@@ -106,4 +111,12 @@ export const saveRecipe = async (recipe: CardType) => {
 
 export const changeSave = async (id: string) => {
   return put<void>(`/favourites/${id}`, { isSaved: false });
+};
+
+export const register = async (user: object) => {
+  return post<any>(`/register`, user);
+};
+
+export const signin = async (user: object) => {
+  return post<any>(`/login`, user);
 };

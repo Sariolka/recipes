@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import logo from '@/components/Icons/logo.svg';
+import { useAuthStore } from '@/components/Stores/auth.ts';
+import { computed } from 'vue';
+const store = useAuthStore();
+const user = computed(() => store.user);
+const isAuthenticated = computed(() => store.token);
 </script>
 
 <template>
@@ -11,10 +16,30 @@ import logo from '@/components/Icons/logo.svg';
       </div>
       <nav class="header__nav">
         <router-link to="/" class="header__link"> Main </router-link>
-        <router-link to="/favourites" class="header__link"> Favourites </router-link>
+        <router-link to="/favourites" class="header__link" v-if="isAuthenticated">
+          Favourites
+        </router-link>
+        <div class="header__auth">
+          <button
+            class="header__link header__btn-auth"
+            v-if="!isAuthenticated"
+            @click="$emit('openLoginModal')"
+          >
+            Login
+          </button>
+          <div class="header__user-block">
+            <div class="header__user" v-if="isAuthenticated">{{ user }}</div>
+            <button
+              class="header__link header__btn-auth"
+              v-if="isAuthenticated"
+              @click="$emit('logout')"
+            >
+              Log out
+            </button>
+          </div>
+        </div>
       </nav>
     </div>
-
     <div class="header__border"></div>
   </header>
 </template>
@@ -36,8 +61,8 @@ import logo from '@/components/Icons/logo.svg';
   &__container {
     display: flex;
     align-items: center;
-    padding-left: 165px;
-    padding-right: 165px;
+    padding-left: 125px;
+    padding-right: 125px;
     margin-top: auto;
     margin-bottom: auto;
     justify-content: space-between;
@@ -65,6 +90,12 @@ import logo from '@/components/Icons/logo.svg';
     margin-bottom: 5px;
   }
 
+  &__user-block {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
   &__title {
     font-size: 24px;
     font-weight: 700;
@@ -83,6 +114,15 @@ import logo from '@/components/Icons/logo.svg';
     text-decoration: none;
     color: #fff;
     cursor: pointer;
+  }
+
+  &__user {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    color: #fff;
+    margin-bottom: 3px;
   }
 }
 </style>
