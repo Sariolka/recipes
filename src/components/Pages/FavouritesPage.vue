@@ -6,12 +6,10 @@ import type { CardType } from '@/components/types/types.ts';
 import { changeSave, deleteRecipe, loadSavedRecipes } from '@/api/api.ts';
 import { CARDS_COUNT } from '../../../config.ts';
 import { useAuthStore } from '@/components/Stores/auth.ts';
-import router from '@/router/router.ts';
 
 const cards = ref<CardType[]>([]);
 const currentPage = ref(1);
 const activeStatus = ref('all');
-const store = useAuthStore();
 
 onMounted(async () => {
   const cardsArray = await loadSavedRecipes();
