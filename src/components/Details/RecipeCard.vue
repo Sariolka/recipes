@@ -39,7 +39,7 @@ const computedTime = computed(() => {
         >Total cooking time: {{ computedTime }}</span
       >
       <p class="card__description">
-        {{ !card.description ? "Click 'Show more' to get more information" : card.description }}
+        {{ card.description || "Click 'Show more' to get more information" }}
       </p>
       <div class="card__footer">
         <a :href="REDIRECT_URL + `${card.slug}`" class="card__link" target="_blank">SHOW MORE</a>

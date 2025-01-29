@@ -12,8 +12,12 @@ const currentPage = ref(1);
 const activeStatus = ref('all');
 
 onMounted(async () => {
-  const cardsArray = await loadSavedRecipes();
-  cards.value = cardsArray.reverse();
+  try {
+    const cardsArray = await loadSavedRecipes();
+    cards.value = cardsArray.reverse();
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const favouritesCards = computed(() => {
@@ -24,7 +28,7 @@ const favouritesCards = computed(() => {
       return cards.value;
     }
     return cards.value.filter((card) => {
-      return card.tags && card.tags.some((tag) => tag.name === activeStatus.value);
+      card.tags?.some(tag => tag.name === activeStatus.value)
     });
   }
 });
@@ -66,7 +70,7 @@ const deleteSavedRecipe = async (recipe: CardType) => {
   }
 };
 
-watch(cards.value, (newValues) => {
+watch(cards, (newValues) => {
   cards.value = newValues;
 });
 
