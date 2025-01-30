@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { Field, Form, ErrorMessage } from 'vee-validate';
+import { toTypedSchema } from '@vee-validate/zod';
+import * as zod from 'zod';
 
 const props = defineProps<{
   isOpen: boolean;
@@ -8,6 +11,13 @@ const props = defineProps<{
 
 const email = ref('');
 const password = ref('');
+
+const fieldSchemaEmail = toTypedSchema(
+  zod.string().nonempty('Field is required').email('Must be a valid email')
+);
+const fieldSchemaPassword = toTypedSchema(
+  zod.string().min(1, { message: 'This is required' }).min(8, { message: 'Too short' })
+);
 </script>
 
 <template>
@@ -19,23 +29,39 @@ const password = ref('');
         <button class="delete modal__close" aria-label="close" @click="$emit('close')"></button>
       </header>
       <section class="modal-card-body">
-        <form class="modal__form" @submit.prevent="$emit('submit', email, password)" id="login">
-          <div>
+        <Form
+          class="modal__form"
+          @submit.prevent="$emit('submit', email, password)"
+          id="login"
+          novalidate
+        >
+          <div class="modal__container">
             <label for="email">Email</label>
-            <input class="input modal__input" v-model="email" type="email" id="email" />
+            <Field
+              class="input modal__input"
+              v-model="email"
+              type="email"
+              id="email"
+              name="email"
+              :rules="fieldSchemaEmail"
+            />
+            <ErrorMessage name="email" class="modal__error" />
           </div>
 
-          <div>
+          <div class="modal__container">
             <label for="password">Password</label>
-            <input
+            <Field
+              name="password"
+              :rules="fieldSchemaPassword"
               v-model="password"
               class="input modal__input"
               type="password"
               id="password"
               minlength="6"
             />
+            <ErrorMessage name="password" class="modal__error" />
           </div>
-        </form>
+        </Form>
       </section>
       <footer class="modal-card-foot modal__foot">
         <p>
@@ -73,6 +99,20 @@ const password = ref('');
     background-color: #fff;
   }
 
+  &__container {
+    position: relative;
+  }
+
+  &__error {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    font-size: 13px;
+    line-height: normal;
+    color: #b91c1c;
+    font-weight: 400;
+  }
+
   &__close {
     background-image: url('../Icons/close.svg');
     background-repeat: no-repeat;
@@ -90,7 +130,7 @@ const password = ref('');
   &__form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
   }
 
   &__foot {

@@ -28,7 +28,7 @@ const favouritesCards = computed(() => {
       return cards.value;
     }
     return cards.value.filter((card) => {
-      card.tags?.some(tag => tag.name === activeStatus.value)
+      card.tags?.some((tag) => tag.name === activeStatus.value);
     });
   }
 });

@@ -21,6 +21,7 @@ const password = ref('');
       </header>
       <section class="modal-card-body">
         <form
+          novalidate
           class="modal__form"
           @submit.prevent="$emit('submit', userName, email, password)"
           id="register"
