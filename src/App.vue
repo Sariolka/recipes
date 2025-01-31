@@ -4,7 +4,6 @@ import HeaderComponent from '@/components/Details/HeaderComponent.vue';
 import videoWebm from '@/components/Video/video-webm.webm';
 import video from '@/components/Video/video.mp4';
 import ModalRegister from '@/components/Details/ModalRegister.vue';
-import { signin } from '@/api/api.ts';
 import { ref, watch } from 'vue';
 import { useAuthStore } from '@/components/Stores/auth.ts';
 import ModalLogin from '@/components/Details/ModalLogin.vue';
@@ -12,7 +11,6 @@ import ModalSuccess from '@/components/Details/ModalSuccess.vue';
 
 const store = useAuthStore();
 const route = useRoute();
-const isLoading = ref(false);
 const router = useRouter();
 const isRegisterModalOpen = ref(false);
 const isLoginModalOpen = ref(false);
@@ -57,26 +55,6 @@ watch(
   }
 );
 
-const handleSignin = async (email: string, password: string) => {
-  if (isLoading.value) {
-    return;
-  }
-  isLoading.value = true;
-  try {
-    const user = {
-      email: email,
-      password: password
-    };
-    const resSignin = await signin(user);
-    store.setUser(resSignin.user.name);
-    store.setToken(resSignin.accessToken);
-  } catch (error) {
-    console.error(error);
-  } finally {
-    isLoading.value = false;
-    closeLoginModal();
-  }
-};
 </script>
 
 <template>
@@ -98,10 +76,9 @@ const handleSignin = async (email: string, password: string) => {
       @open-modal="handleOpenWarningModal"
     />
     <ModalLogin
-      :is-loading="isLoading"
       :is-open="isLoginModalOpen"
       @close="closeLoginModal"
-      @submit="handleSignin"
+      @open-modal="handleOpenWarningModal"
       @openRegisterModal="handleOpenRegisterModal"
     />
     <ModalSuccess :is-open="isWarningModalOpen" @close="closeWarningModal" :text="warningText" />

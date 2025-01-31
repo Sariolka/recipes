@@ -6,10 +6,11 @@ export const useAuthStore = defineStore('auth', {
     token: null
   }),
   actions: {
+    // @ts-expect-error @typescript-eslint/ban-ts-comment
     setUser(user) {
       this.user = user;
-    },
-    setToken(token) {
+      // @ts-expect-error @typescript-eslint/ban-ts-comment
+    }, setToken(token) {
       this.token = token;
       localStorage.setItem('token', token);
     },
