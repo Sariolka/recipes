@@ -1,14 +1,153 @@
 {
   "favourites": [
     {
-      "slug": "fluffy-japanese-pancakes",
-      "name": "Fluffy Japanese Pancakes",
-      "description": "Say \"konnichiwa\" to these Fluffy Japanese Pancakes that'll transport your taste buds straight to Tokyo! Light, airy, and oh-so-delicious, these pancakes are perfect for a weekend brunch or a fun twist on breakfast for dinner.",
-      "thumbnailUrl": "https://img.buzzfeed.com/video-api-prod/assets/5948dace4551484287a85a49b6e5c773/BFV15479_FluffyJapanesePancakes-ThumbC1080.jpg",
-      "minutes": 30,
-      "id": "682",
+      "slug": "nut-free-macarons",
+      "name": "Nut-Free Macarons",
+      "description": "These macarons are a sweet and delicate treat that are perfect for anyone with a nut allergy. Made with a crispy shell and a creamy filling, they're a perfect afternoon snack or dessert.",
+      "thumbnailUrl": "https://img.buzzfeed.com/tasty-app-user-assets-prod-us-east-1/recipes/8230d427f6b648e9ae0cfbcbea9d6877.jpeg",
+      "minutes": 80,
+      "id": "5910",
       "isSaved": true,
       "tags": [
+        {
+          "display_name": "French",
+          "id": 64449,
+          "name": "french",
+          "parent_tag_name": "european",
+          "root_tag_type": "cuisine",
+          "type": "european"
+        },
+        {
+          "display_name": "Dairy-Free",
+          "id": 64463,
+          "name": "dairy_free",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "Vegetarian",
+          "id": 64469,
+          "name": "vegetarian",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
+          "display_name": "Desserts",
+          "id": 64485,
+          "name": "desserts",
+          "parent_tag_name": "meal",
+          "root_tag_type": "meal",
+          "type": "meal"
+        },
+        {
+          "display_name": "Baking",
+          "id": 64492,
+          "name": "baking",
+          "parent_tag_name": "appliance",
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "Bakery Goods",
+          "id": 65857,
+          "name": "bakery_goods",
+          "parent_tag_name": "appliance",
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "Special Occasion",
+          "id": 188967,
+          "name": "special_occasion",
+          "parent_tag_name": "occasion",
+          "root_tag_type": "seasonal",
+          "type": "occasion"
+        },
+        {
+          "display_name": "Under 45 Minutes",
+          "id": 8091747,
+          "name": "under_45_minutes",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Under 1 Hour",
+          "id": 8091748,
+          "name": "under_1_hour",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Low-Calorie",
+          "id": 8091916,
+          "name": "low_calorie",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Low-Fat",
+          "id": 8091919,
+          "name": "low_fat",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Eggs",
+          "id": 10623588,
+          "name": "eggs",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Gluten",
+          "id": 10623589,
+          "name": "gluten",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Dairy",
+          "id": 10623608,
+          "name": "dairy",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Tree nuts",
+          "id": 10640006,
+          "name": "tree_nuts",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        }
+      ]
+    },
+    {
+      "slug": "fluffy-perfect-pancakes",
+      "name": "Fluffy Pancakes",
+      "description": "Get ready to flip out over these fluffy, perfect pancakes! Light and airy, these pancakes are the ultimate breakfast treat. Top with your favorite fruits, syrup, or whipped cream, and enjoy a stack of pure bliss!",
+      "thumbnailUrl": "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/119674.jpg",
+      "minutes": 35,
+      "id": "3094",
+      "isSaved": true,
+      "tags": [
+        {
+          "display_name": "North American",
+          "id": 64444,
+          "name": "north_american",
+          "parent_tag_name": "cuisine",
+          "root_tag_type": "cuisine",
+          "type": "cuisine"
+        },
         {
           "display_name": "Japanese",
           "id": 64454,
@@ -18,17 +157,25 @@
           "type": "asian"
         },
         {
+          "display_name": "Comfort Food",
+          "id": 64462,
+          "name": "comfort_food",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Vegetarian",
+          "id": 64469,
+          "name": "vegetarian",
+          "parent_tag_name": "dietary",
+          "root_tag_type": "dietary",
+          "type": "dietary"
+        },
+        {
           "display_name": "Easy",
           "id": 64471,
           "name": "easy",
-          "parent_tag_name": "difficulty",
-          "root_tag_type": "difficulty",
-          "type": "difficulty"
-        },
-        {
-          "display_name": "Under 30 Minutes",
-          "id": 64472,
-          "name": "under_30_minutes",
           "parent_tag_name": "difficulty",
           "root_tag_type": "difficulty",
           "type": "difficulty"
@@ -50,14 +197,6 @@
           "type": "meal"
         },
         {
-          "display_name": "Desserts",
-          "id": 64485,
-          "name": "desserts",
-          "parent_tag_name": "meal",
-          "root_tag_type": "meal",
-          "type": "meal"
-        },
-        {
           "display_name": "Kid-Friendly",
           "id": 64488,
           "name": "kid_friendly",
@@ -66,12 +205,20 @@
           "type": "cooking_style"
         },
         {
-          "display_name": "Hand Mixer",
-          "id": 65844,
-          "name": "hand_mixer",
-          "parent_tag_name": null,
-          "root_tag_type": "appliance",
-          "type": "appliance"
+          "display_name": "Steam",
+          "id": 64498,
+          "name": "steam",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Fusion",
+          "id": 65410,
+          "name": "fusion",
+          "parent_tag_name": "cuisine",
+          "root_tag_type": "cuisine",
+          "type": "cuisine"
         },
         {
           "display_name": "Stove Top",
@@ -82,41 +229,9 @@
           "type": "appliance"
         },
         {
-          "display_name": "Indulgent Sweets",
-          "id": 65850,
-          "name": "indulgent_sweets",
-          "parent_tag_name": null,
-          "root_tag_type": "occasion",
-          "type": "occasion"
-        },
-        {
-          "display_name": "Pan Fry",
-          "id": 65859,
-          "name": "pan_fry",
-          "parent_tag_name": "cooking_style",
-          "root_tag_type": "cooking_style",
-          "type": "cooking_style"
-        },
-        {
-          "display_name": "Pyrex",
-          "id": 1247785,
-          "name": "pyrex",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
-        },
-        {
-          "display_name": "Saute Pan",
-          "id": 1247787,
-          "name": "saute_pan",
-          "parent_tag_name": null,
-          "root_tag_type": "equipment",
-          "type": "equipment"
-        },
-        {
-          "display_name": "Spatula",
-          "id": 1247788,
-          "name": "spatula",
+          "display_name": "Cake Pan",
+          "id": 1247768,
+          "name": "cake_pan",
           "parent_tag_name": null,
           "root_tag_type": "equipment",
           "type": "equipment"
@@ -130,9 +245,25 @@
           "type": "equipment"
         },
         {
-          "display_name": "Liquid Measuring Cup",
-          "id": 1280506,
-          "name": "liquid_measuring_cup",
+          "display_name": "Chef's Knife",
+          "id": 1280501,
+          "name": "chefs_knife",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Cutting Board",
+          "id": 1280503,
+          "name": "cutting_board",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Fish Spatula",
+          "id": 1280504,
+          "name": "fish_spatula",
           "parent_tag_name": null,
           "root_tag_type": "equipment",
           "type": "equipment"
@@ -154,6 +285,30 @@
           "type": "equipment"
         },
         {
+          "display_name": "Mixing Bowl",
+          "id": 1280510,
+          "name": "mixing_bowl",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Sieve",
+          "id": 1280513,
+          "name": "sieve",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Best of Tasty",
+          "id": 5831534,
+          "name": "best_of_tasty",
+          "parent_tag_name": null,
+          "root_tag_type": "business_tags",
+          "type": "business_tags"
+        },
+        {
           "display_name": "Under 45 Minutes",
           "id": 8091747,
           "name": "under_45_minutes",
@@ -168,6 +323,30 @@
           "parent_tag_name": "difficulty",
           "root_tag_type": "difficulty",
           "type": "difficulty"
+        },
+        {
+          "display_name": "High-Protein",
+          "id": 8091917,
+          "name": "high_protein",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "High-Fiber",
+          "id": 8091920,
+          "name": "high_fiber",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Incredible Egg Breakfasts",
+          "id": 8907401,
+          "name": "incredible_egg_breakfasts",
+          "parent_tag_name": null,
+          "root_tag_type": "feature_page",
+          "type": "feature_page"
         },
         {
           "display_name": "Sweet Breakfasts",
@@ -210,6 +389,14 @@
           "type": "ingredients_to_avoid"
         },
         {
+          "display_name": "Budget",
+          "id": 10742773,
+          "name": "budget",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
           "display_name": "Better Breakfast",
           "id": 11036620,
           "name": "better_breakfast",
@@ -218,105 +405,282 @@
           "type": "breakfast"
         }
       ]
+    },
+    {
+      "slug": "sugar-cookies",
+      "name": "How to Make the Best Sugar Cookies",
+      "description": "These classic cookies are a timeless favorite that never go out of style. Soft, buttery, and perfectly sweet, they're the epitome of comfort food and will remind you of childhood memories with every bite. Whether you're baking them for a holiday gathering or just for a sweet treat to enjoy with a glass of milk, these sugar cookies are sure to be a hit with everyone who takes a bite!",
+      "thumbnailUrl": "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/192958.jpg",
+      "minutes": 162,
+      "id": "4617",
+      "isSaved": true,
+      "tags": [
+        {
+          "display_name": "Comfort Food",
+          "id": 64462,
+          "name": "comfort_food",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Easy",
+          "id": 64471,
+          "name": "easy",
+          "parent_tag_name": "difficulty",
+          "root_tag_type": "difficulty",
+          "type": "difficulty"
+        },
+        {
+          "display_name": "Christmas",
+          "id": 64473,
+          "name": "christmas",
+          "parent_tag_name": "holidays",
+          "root_tag_type": "seasonal",
+          "type": "holidays"
+        },
+        {
+          "display_name": "Desserts",
+          "id": 64485,
+          "name": "desserts",
+          "parent_tag_name": "meal",
+          "root_tag_type": "meal",
+          "type": "meal"
+        },
+        {
+          "display_name": "Kid-Friendly",
+          "id": 64488,
+          "name": "kid_friendly",
+          "parent_tag_name": "cooking_style",
+          "root_tag_type": "cooking_style",
+          "type": "cooking_style"
+        },
+        {
+          "display_name": "Baking",
+          "id": 64492,
+          "name": "baking",
+          "parent_tag_name": "appliance",
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "Party",
+          "id": 64503,
+          "name": "party",
+          "parent_tag_name": "occasion",
+          "root_tag_type": "seasonal",
+          "type": "occasion"
+        },
+        {
+          "display_name": "Winter",
+          "id": 64511,
+          "name": "winter",
+          "parent_tag_name": "seasonal",
+          "root_tag_type": "seasonal",
+          "type": "seasonal"
+        },
+        {
+          "display_name": "Hand Mixer",
+          "id": 65844,
+          "name": "hand_mixer",
+          "parent_tag_name": null,
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "Indulgent Sweets",
+          "id": 65850,
+          "name": "indulgent_sweets",
+          "parent_tag_name": null,
+          "root_tag_type": "occasion",
+          "type": "occasion"
+        },
+        {
+          "display_name": "Bakery Goods",
+          "id": 65857,
+          "name": "bakery_goods",
+          "parent_tag_name": "appliance",
+          "root_tag_type": "appliance",
+          "type": "appliance"
+        },
+        {
+          "display_name": "Special Occasion",
+          "id": 188967,
+          "name": "special_occasion",
+          "parent_tag_name": "occasion",
+          "root_tag_type": "seasonal",
+          "type": "occasion"
+        },
+        {
+          "display_name": "Oven Mitts",
+          "id": 1247775,
+          "name": "oven_mitts",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Parchment Paper",
+          "id": 1247780,
+          "name": "parchment_paper",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Plastic Wrap",
+          "id": 1247784,
+          "name": "plastic_wrap",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Pyrex",
+          "id": 1247785,
+          "name": "pyrex",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Spatula",
+          "id": 1247788,
+          "name": "spatula",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Whisk",
+          "id": 1247793,
+          "name": "whisk",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Baking Pan",
+          "id": 1280500,
+          "name": "baking_pan",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Cooling Rack",
+          "id": 1280502,
+          "name": "cooling_rack",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Dry Measuring Cups",
+          "id": 1280507,
+          "name": "dry_measuring_cups",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Measuring Spoons",
+          "id": 1280508,
+          "name": "measuring_spoons",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Mixing Bowl",
+          "id": 1280510,
+          "name": "mixing_bowl",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Rolling Pin",
+          "id": 1280512,
+          "name": "rolling_pin",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Sieve",
+          "id": 1280513,
+          "name": "sieve",
+          "parent_tag_name": null,
+          "root_tag_type": "equipment",
+          "type": "equipment"
+        },
+        {
+          "display_name": "Holiday Cookie: How To",
+          "id": 3527978,
+          "name": "holiday_cookie_howto",
+          "parent_tag_name": null,
+          "root_tag_type": "feature_page",
+          "type": "feature_page"
+        },
+        {
+          "display_name": "Shoppable Recipes Seasonal Desserts",
+          "id": 7559501,
+          "name": "shoppable_recipes_seasonal_desserts",
+          "parent_tag_name": null,
+          "root_tag_type": "feature_page",
+          "type": "feature_page"
+        },
+        {
+          "display_name": "High-Fiber",
+          "id": 8091920,
+          "name": "high_fiber",
+          "parent_tag_name": "healthy",
+          "root_tag_type": "healthy",
+          "type": "healthy"
+        },
+        {
+          "display_name": "Cookies",
+          "id": 9299679,
+          "name": "cookies",
+          "parent_tag_name": "desserts",
+          "root_tag_type": "meal",
+          "type": "desserts"
+        },
+        {
+          "display_name": "Eggs",
+          "id": 10623588,
+          "name": "eggs",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Gluten",
+          "id": 10623589,
+          "name": "gluten",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        },
+        {
+          "display_name": "Dairy",
+          "id": 10623608,
+          "name": "dairy",
+          "parent_tag_name": "ingredients_to_avoid",
+          "root_tag_type": "ingredients_to_avoid",
+          "type": "ingredients_to_avoid"
+        }
+      ]
     }
   ],
   "notes": [],
   "users": [
     {
-      "email": "456@ert.ru",
-      "password": "$2a$10$3kDrVCrIihuAunNlkJbT3.Wm5qOd2l8YNWUAy0.JgBMb8bg2BuJsW",
-      "name": "test",
+      "email": "test@mail.ru",
+      "password": "$2a$10$6dYFtXO4/JGAVHgMKZKrGOQn8hUxD34SE.49MV6woJt7.bFjU9HgG",
+      "name": "Test",
       "id": 1
-    },
-    {
-      "email": "dfffffgd@list.ry",
-      "password": "$2a$10$x4L5CCqL2WGicOtSEvsCT.oR6k6oOW1UqKQ.ohtdmpVJ.MgoIrBnu",
-      "name": "foo",
-      "id": 2
-    },
-    {
-      "email": "test@t.ru",
-      "password": "$2a$10$9hQNTI6C23ZXDiil6lz97ezPfupZzAiEmvVJ80KV4j6iHGGH/1zNG",
-      "name": "tt",
-      "id": 3
-    },
-    {
-      "email": "blood1@mail.ru",
-      "password": "$2a$10$F07aXg/D.Fjpu/HFmlsbxeZvHGO/XjJFajJvZpsJAvhT1rnFbtLb2",
-      "name": "tt",
-      "id": 4
-    },
-    {
-      "email": "4568@ert.ru",
-      "password": "$2a$10$UlHwg2y7Fn53vYZB9LNaq.GQk57Pg2og73EA9xVEH5eTdk6u/XB0u",
-      "name": "tt",
-      "id": 5
-    },
-    {
-      "email": "blood@mail.ru",
-      "password": "$2a$10$LnbbxUKaYZ0h/OS7kybDF.JFtZhuzOW9.h1T9lLi6z2aTs3hSiKeS",
-      "name": "П2",
-      "id": 6
-    },
-    {
-      "email": "sariola@list.ru",
-      "password": "$2a$10$1YF6U8pct9LRCKJv9eVmgeWW/943cSHs.V1/8TYbyJ1vUH2T34.9.",
-      "name": "11",
-      "id": 7
-    },
-    {
-      "email": "rter@dfd.ru",
-      "password": "$2a$10$Sn5qkGlw2oHjl5iOltEFMuVzfNgtZaFx8xPUdBarv4wahIZk7uUZC",
-      "name": "11",
-      "id": 8
-    },
-    {
-      "email": "dfgd@list.ry",
-      "password": "$2a$10$qrgu52q.3ClX49juYmnkSecYuFOF3IPM7uK6FhBpO3TApsFixN3aC",
-      "name": "00",
-      "id": 9
-    },
-    {
-      "email": "4vvv6@ert.ru",
-      "password": "$2a$10$Npwjf.0tyn8GksCWABbIruROgLW41vOGQeMN1V9kGRL6fQGs2go96",
-      "name": "11",
-      "id": 10
-    },
-    {
-      "email": "45h6@ert.ru",
-      "password": "$2a$10$ZzRW5kpGO0ZW3donqAaKyeIlmDuF1WolnGMnq4SeJF6DNGU50r6ym",
-      "name": "11",
-      "id": 11
-    },
-    {
-      "email": "4556@ert.ru",
-      "password": "$2a$10$NLYLf8Pv8yBTjOheQtEwa.6w8YQSJ/2gugz1QlEukyTXiqVQAd8HC",
-      "name": "11",
-      "id": 12
-    },
-    {
-      "email": "4856@ert.ru",
-      "password": "$2a$10$Rts9ZHUXUnSEhmD.p7PcnOnBr9hHQE0MO5dg4kRoU9RXr5hjGub9q",
-      "name": "tt",
-      "id": 13
-    },
-    {
-      "email": "bloofffd@mail.ru",
-      "password": "$2a$10$vhzBnN3WvhbEEOEINXn37e7kZmIvfqokL/kN84qb0jqmdWJySzP8i",
-      "name": "sdf",
-      "id": 14
-    },
-    {
-      "email": "blosod@mail.ru",
-      "password": "$2a$10$H8aBgzjN0jIqQu7nSBfRDu90LUGMH5uc2bv00TuLOkNcJnkICsfta",
-      "name": "sdfsd",
-      "id": 15
-    },
-    {
-      "email": "4sdf56@ert.ru",
-      "password": "$2a$10$CH.BKmOl21d9PZ3N.E/UbO6ygQZOnnSfvIVxArbdte40yZBdm7rES",
-      "name": "ff",
-      "id": 16
     }
   ]
 }
