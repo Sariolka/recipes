@@ -43,12 +43,9 @@ export const fetchRecipes = (
 export const BASE_PATH = 'http://localhost:3000';
 
 export const processResponse = async <T>(response: Response): T => {
-  if (!response.ok) {
-    throw new Error(
-      'Произошла ошибка при попытке получить данные с сервера. Статус ответа не является успешным'
-    );
+  if (response.status === 400) {
+    throw new Error('Email already exists. Please try again.');
   }
-
   const data = await response.json();
   console.log(data);
   return data as T;

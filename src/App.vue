@@ -4,10 +4,11 @@ import HeaderComponent from '@/components/Details/HeaderComponent.vue';
 import videoWebm from '@/components/Video/video-webm.webm';
 import video from '@/components/Video/video.mp4';
 import ModalRegister from '@/components/Details/ModalRegister.vue';
-import { register, signin } from '@/api/api.ts';
+import { signin } from '@/api/api.ts';
 import { ref, watch } from 'vue';
 import { useAuthStore } from '@/components/Stores/auth.ts';
 import ModalLogin from '@/components/Details/ModalLogin.vue';
+import ModalSuccess from '@/components/Details/ModalSuccess.vue';
 
 const store = useAuthStore();
 const route = useRoute();
@@ -15,6 +16,8 @@ const isLoading = ref(false);
 const router = useRouter();
 const isRegisterModalOpen = ref(false);
 const isLoginModalOpen = ref(false);
+const isWarningModalOpen = ref(false);
+const warningText = ref('');
 
 //Модалки
 const handleOpenRegisterModal = () => {
@@ -32,6 +35,14 @@ const closeLoginModal = () => {
   isLoginModalOpen.value = false;
 };
 
+const handleOpenWarningModal = (text: string) => {
+  isWarningModalOpen.value = true;
+  warningText.value = text;
+};
+const closeWarningModal = () => {
+  isWarningModalOpen.value = false;
+};
+
 const handleLogout = () => {
   store.setToken(null);
   store.setUser(null);
@@ -45,30 +56,6 @@ watch(
     }
   }
 );
-
-const handleRegister = async (name: string, email: string, password: string) => {
-  if (isLoading.value) {
-    return;
-  }
-  if (!name || !email || !password) {
-    return;
-  }
-  isLoading.value = true;
-  try {
-    const newData = {
-      name: name,
-      email: email,
-      password: password
-    };
-    await register(newData);
-    await handleSignin(email, password);
-  } catch (err: any) {
-    console.log(err);
-  } finally {
-    closeRegisterModal();
-    isLoading.value = false;
-  }
-};
 
 const handleSignin = async (email: string, password: string) => {
   if (isLoading.value) {
@@ -106,10 +93,9 @@ const handleSignin = async (email: string, password: string) => {
     />
     <router-view />
     <ModalRegister
-      :is-loading="isLoading"
       :is-open="isRegisterModalOpen"
       @close="closeRegisterModal"
-      @submit="handleRegister"
+      @open-modal="handleOpenWarningModal"
     />
     <ModalLogin
       :is-loading="isLoading"
@@ -118,6 +104,7 @@ const handleSignin = async (email: string, password: string) => {
       @submit="handleSignin"
       @openRegisterModal="handleOpenRegisterModal"
     />
+    <ModalSuccess :is-open="isWarningModalOpen" @close="closeWarningModal" :text="warningText" />
   </section>
 </template>
 
