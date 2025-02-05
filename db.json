@@ -681,6 +681,12 @@
       "password": "$2a$10$6dYFtXO4/JGAVHgMKZKrGOQn8hUxD34SE.49MV6woJt7.bFjU9HgG",
       "name": "Test",
       "id": 1
+    },
+    {
+      "email": "test1@mail.ru",
+      "password": "$2a$10$G2LHlCFIioAXkRvYO5DiaeM7n.fxwvpOxOXqPm1OyVazDlgBMySii",
+      "name": "gggg",
+      "id": 2
     }
   ]
 }

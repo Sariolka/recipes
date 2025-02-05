@@ -1,7 +1,5 @@
 import { BASE_URL, HOST, KEY, KEY_NAME, URL_NAME } from '../../config.ts';
-import type { CardType } from '@/components/types/types.ts';
-// import { useAuthStore } from '@/components/Stores/auth.ts'
-// const store  = useAuthStore()
+import type { CardType, UserAuth } from '@/components/types/types.ts'
 
 export const fetchRecipes = (
   query: string,
@@ -44,11 +42,7 @@ export const BASE_PATH = 'http://localhost:3000';
 
 // @ts-expect-error @typescript-eslint/ban-ts-comment
 export const processResponse = async <T>(response: Response): T => {
-  // if (response.status === 400) {
-  //   throw new Error('Email already exists. Please try again.');
-  // }
   const data = await response.json();
-  console.log(data);
   return data as T;
 };
 

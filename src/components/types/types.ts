@@ -20,3 +20,12 @@ export interface ResType {
   count: number;
   results: any[];
 }
+
+export interface UserAuth {
+  accessToken: string
+  user: {
+    email: string;
+    name: string;
+    id: number;
+  }
+}
