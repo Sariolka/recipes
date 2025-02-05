@@ -5,7 +5,6 @@ import RecipesList from '@/components/Details/RecipesList.vue';
 import type { CardType } from '@/components/types/types.ts';
 import { changeSave, deleteRecipe, loadSavedRecipes } from '@/api/api.ts';
 import { CARDS_COUNT } from '../../../config.ts';
-import { useAuthStore } from '@/components/Stores/auth.ts';
 
 const cards = ref<CardType[]>([]);
 const currentPage = ref(1);

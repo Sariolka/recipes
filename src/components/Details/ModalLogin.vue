@@ -1,13 +1,78 @@
 <script setup lang="ts">
+import { useField, useForm } from 'vee-validate';
+import { toTypedSchema } from '@vee-validate/zod';
+import * as zod from 'zod';
+import { useAuthStore } from '@/components/Stores/auth.ts';
 import { ref } from 'vue';
+import { signin } from '@/api/api.ts';
 
 const props = defineProps<{
   isOpen: boolean;
-  isLoading: boolean;
 }>();
 
-const email = ref('');
-const password = ref('');
+const store = useAuthStore();
+const isLoading = ref(false);
+const errorText = ref('');
+
+const emit = defineEmits(['close', 'submit', 'open-modal', 'openRegisterModal']);
+
+const validationSchema = toTypedSchema(
+  zod.object({
+    email: zod.string().nonempty('Field is required').email({ message: 'Must be a valid email' }),
+    password: zod
+      .string()
+      .nonempty('The Password field is required')
+      .min(6, { message: 'Password must be longer than 6 characters' })
+  })
+);
+
+const { handleSubmit, errors, resetForm } = useForm({
+  validationSchema
+});
+
+const { value: email } = useField('email');
+const { value: password } = useField('password');
+
+const handleSignin = async (email: string, password: string) => {
+  if (isLoading.value) {
+    return;
+  }
+  isLoading.value = true;
+  try {
+    const user = {
+      email: email,
+      password: password
+    };
+    const resSignin = await signin(user);
+    if (resSignin && resSignin.user && resSignin.accessToken) {
+      store.setUser(resSignin.user.name);
+      store.setToken(resSignin.accessToken);
+      return true;
+    } else {
+      errorText.value = resSignin;
+    }
+  } catch (error: any) {
+    console.error(error);
+    errorText.value = error;
+  } finally {
+    isLoading.value = false;
+  }
+  return false;
+};
+
+const onSubmit = handleSubmit(async (values) => {
+  const success = await handleSignin(values.email, values.password);
+  if (success) {
+    handleClose();
+    emit('open-modal', 'You are successfully logged in');
+  }
+});
+
+const handleClose = () => {
+  resetForm();
+  errorText.value = '';
+  emit('close');
+};
 </script>
 
 <template>
@@ -19,13 +84,14 @@ const password = ref('');
         <button class="delete modal__close" aria-label="close" @click="$emit('close')"></button>
       </header>
       <section class="modal-card-body">
-        <form class="modal__form" @submit.prevent="$emit('submit', email, password)" id="login">
-          <div>
+        <form class="modal__form" @submit.prevent="onSubmit" id="login">
+          <div class="modal__container">
             <label for="email">Email</label>
             <input class="input modal__input" v-model="email" type="email" id="email" />
+            <span class="modal__error">{{ errors.email }}</span>
           </div>
 
-          <div>
+          <div class="modal__container">
             <label for="password">Password</label>
             <input
               v-model="password"
@@ -34,10 +100,12 @@ const password = ref('');
               id="password"
               minlength="6"
             />
+            <span class="modal__error">{{ errors.password }}</span>
           </div>
         </form>
       </section>
       <footer class="modal-card-foot modal__foot">
+        <span class="modal__error-text" v-if="errorText">{{ errorText }}</span>
         <p>
           Don't have an account?
           <button class="button is-white modal__link" @click="$emit('openRegisterModal')">
@@ -69,10 +137,33 @@ const password = ref('');
     box-shadow: none;
   }
 
-  &__foot {
-    background-color: #fff;
+  &__error {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    font-size: 13px;
+    line-height: normal;
+    color: #b91c1c;
+    font-weight: 400;
   }
 
+  &__container {
+    position: relative;
+  }
+  &__foot {
+    background-color: #fff;
+    position: relative;
+  }
+
+  &__error-text {
+    position: absolute;
+    bottom: 90px;
+    right: 32px;
+    font-size: 13px;
+    line-height: normal;
+    color: #b91c1c;
+    font-weight: 400;
+  }
   &__close {
     background-image: url('../Icons/close.svg');
     background-repeat: no-repeat;

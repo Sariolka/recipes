@@ -55,10 +55,12 @@ const handleRegister = async (name: string, email: string, password: string) => 
       store.setUser(resSignUp.user.name);
       store.setToken(resSignUp.accessToken);
       return true;
+    } else {
+      errorText.value = resSignUp;
     }
-  } catch (err: any) {
-    console.log(err);
-    errorText.value = err;
+  } catch (error: any) {
+    console.error(error);
+    errorText.value = error;
   } finally {
     isLoading.value = false;
   }
