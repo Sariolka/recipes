@@ -89,8 +89,8 @@ const handlePushToMain = () => {
   &__container {
     display: flex;
     align-items: center;
-    padding-left: 90px;
-    padding-right: 125px;
+    padding-left: 70px;
+    padding-right: 100px;
     margin-top: auto;
     margin-bottom: auto;
     justify-content: space-between;
@@ -151,7 +151,7 @@ const handlePushToMain = () => {
   }
 
   &__user {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Rufina', sans-serif;
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 700;

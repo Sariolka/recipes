@@ -21,7 +21,7 @@ const route = useRoute();
   display: flex;
   align-items: center;
   justify-content: end;
-  padding: 20px 138px;
+  padding: 20px 100px;
   background-color: #233000;
   gap: 15px;
 
