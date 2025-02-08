@@ -19,13 +19,14 @@ export interface CardType {
 export interface ResType {
   count: number;
   results: any[];
+  message?: string;
 }
 
 export interface UserAuth {
-  accessToken: string
+  accessToken: string;
   user: {
     email: string;
     name: string;
     id: number;
-  }
+  };
 }

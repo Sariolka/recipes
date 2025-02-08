@@ -80,10 +80,10 @@ const handleClose = () => {
     <div class="modal-background" @click="$emit('close')"></div>
     <div class="modal-card modal__card">
       <header class="modal-card-head modal__head">
-        <p class="modal-card-title">Access Your Account</p>
+        <p class="modal-card-title modal__title">Access Your Account</p>
         <button class="delete modal__close" aria-label="close" @click="$emit('close')"></button>
       </header>
-      <section class="modal-card-body">
+      <section class="modal-card-body modal__body">
         <form class="modal__form" @submit.prevent="onSubmit" id="login">
           <div class="modal__container">
             <label for="email">Email</label>
@@ -135,6 +135,15 @@ const handleClose = () => {
 
   &__head {
     box-shadow: none;
+    background-color: #ebf0e4;
+  }
+
+  &__body {
+    background-color: #ebf0e4;
+  }
+
+  &__title {
+    font-family: 'Rufina', sans-serif;
   }
 
   &__error {
@@ -150,10 +159,6 @@ const handleClose = () => {
   &__container {
     position: relative;
   }
-  &__foot {
-    background-color: #fff;
-    position: relative;
-  }
 
   &__error-text {
     position: absolute;
@@ -164,6 +169,7 @@ const handleClose = () => {
     color: #b91c1c;
     font-weight: 400;
   }
+
   &__close {
     background-image: url('../Icons/close.svg');
     background-repeat: no-repeat;
@@ -176,6 +182,7 @@ const handleClose = () => {
   &__input {
     outline: transparent;
     margin-bottom: 5px;
+    border-radius: 0;
   }
 
   &__form {
@@ -188,22 +195,30 @@ const handleClose = () => {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    background-color: #ebf0e4;
+    position: relative;
   }
 
   &__button {
     width: 150px;
+    border-radius: 0;
+    font-family: 'Rufina', sans-serif;
+    background-color: #233000;
+    padding: 9px 30px;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: normal;
+    outline: transparent;
+    color: #ffffff;
   }
 
   &__link {
     padding: 0;
+    background-color: #ebf0e4;
     &:hover {
       background-color: transparent;
     }
   }
-}
-
-.modal-card-body {
-  padding-left: 32px;
-  padding-right: 14px;
 }
 </style>

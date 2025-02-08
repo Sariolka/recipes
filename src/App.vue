@@ -4,10 +4,11 @@ import HeaderComponent from '@/components/Details/HeaderComponent.vue';
 import videoWebm from '@/components/Video/video-webm.webm';
 import video from '@/components/Video/video.mp4';
 import ModalRegister from '@/components/Details/ModalRegister.vue';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useAuthStore } from '@/components/Stores/auth.ts';
 import ModalLogin from '@/components/Details/ModalLogin.vue';
-import ModalSuccess from '@/components/Details/ModalSuccess.vue';
+import ModalSuccess from '@/components/Details/ModalWarning.vue';
+import FooterComponent from '@/components/Details/FooterComponent.vue';
 
 const store = useAuthStore();
 const route = useRoute();
@@ -16,6 +17,10 @@ const isRegisterModalOpen = ref(false);
 const isLoginModalOpen = ref(false);
 const isWarningModalOpen = ref(false);
 const warningText = ref('');
+const hasData = computed(() => {
+  console.log(store.data);
+  return store.data;
+});
 
 //Модалки
 const handleOpenRegisterModal = () => {
@@ -36,6 +41,9 @@ const closeLoginModal = () => {
 const handleOpenWarningModal = (text: string) => {
   isWarningModalOpen.value = true;
   warningText.value = text;
+  setTimeout(() => {
+    closeWarningModal();
+  }, 3000);
 };
 const closeWarningModal = () => {
   isWarningModalOpen.value = false;
@@ -54,22 +62,30 @@ watch(
     }
   }
 );
-
 </script>
 
 <template>
   <section class="page" :class="{ 'page_type-favourite': route.path !== '/' }">
-    <video autoPlay playsInline muted loop class="page__video" v-if="route.path === '/'">
+    <video
+      autoPlay
+      playsInline
+      muted
+      loop
+      class="page__video"
+      v-if="route.path === '/' && hasData === false"
+    >
       <source :src="videoWebm" type="video/webm" />
       <source :src="video" type="video/mp4" />
       Ваш браузер не поддерживает встроенные видео
     </video>
     <HeaderComponent
+      :hasData="hasData"
       v-if="route.path !== '/404'"
       @openLoginModal="handleOpenLoginModal"
       @logout="handleLogout"
     />
-    <router-view />
+    <router-view @open-modal="handleOpenWarningModal" />
+    <FooterComponent />
     <ModalRegister
       :is-open="isRegisterModalOpen"
       @close="closeRegisterModal"
@@ -87,10 +103,13 @@ watch(
 
 <style lang="scss" scoped>
 .page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
   &_type-favourite {
-    background-color: #1a1a1a;
+    background-color: #fff;
     min-height: 100vh;
-    padding-bottom: 50px;
   }
 
   &__video {

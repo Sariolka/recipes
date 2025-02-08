@@ -39,7 +39,7 @@ const props = defineProps<{
     justify-content: center;
     padding-left: 10px;
     padding-right: 10px;
-    gap: 30px;
+    gap: 60px 40px;
     grid-template-columns: repeat(auto-fill, 350px);
   }
 }

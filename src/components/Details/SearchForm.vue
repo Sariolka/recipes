@@ -35,7 +35,7 @@ watch(
     <div class="search__input-container">
       <input
         :class="{ 'is-danger': errorText }"
-        class="search__input input is-rounded"
+        class="search__input input is-normal"
         type="text"
         v-model="query"
         placeholder="Search..."
@@ -46,15 +46,15 @@ watch(
       <button class="search__btn-clear" v-if="query" @click="clearInput" type="button"></button>
     </div>
     <div class="search__select-container">
-      <div class="search__select select is-rounded is-normal has-icons-left">
-        <select id="time-select" v-model="selectedTime">
+      <div class="select is-normal has-icons-left">
+        <select id="time-select" v-model="selectedTime" class="search__select">
           <option v-for="option in timeOptions" :key="option.value" :value="option.value">
             {{ option.text }}
           </option>
         </select>
       </div>
-      <div class="search__select select is-rounded is-normal has-icons-left">
-        <select id="meal-select" v-model="selectedMeal">
+      <div class="search__select select is-normal has-icons-left">
+        <select id="meal-select" v-model="selectedMeal" class="search__select">
           <option v-for="option in mealOptions" :key="option.value" :value="option.value">
             {{ option.text }}
           </option>
@@ -82,11 +82,9 @@ watch(
     width: 600px;
     background-color: #fff;
     padding: 12px 16px 12px 40px;
-    border-radius: 43px;
-    border: none;
+    border-radius: 0;
     outline: transparent;
     color: #252525;
-    font-family: 'Helvetica Neue', sans-serif;
     font-size: 16px;
     font-weight: 400;
     font-style: normal;
@@ -138,16 +136,21 @@ watch(
   }
 
   &__button {
-    background-color: #34c759;
-    padding: 11px 30px;
-    border-radius: 43px;
-    font-family: 'Helvetica Neue', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
+    background-color: #5e6600;
+    border: 2px solid #000000;
+    padding: 9px 30px;
+    font-family: 'Rufina', sans-serif;
     font-style: normal;
+    font-size: 15px;
+    font-weight: 700;
     line-height: normal;
     outline: transparent;
-    color: #252525;
+    color: #ffffff;
+  }
+
+  &__select {
+    border-radius: 0;
+    font-family: 'Lato', sans-serif;
   }
 }
 input[type='search']::-webkit-search-decoration,
