@@ -86,7 +86,6 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
     sessionStorage.setItem('totalCount', JSON.stringify(totalCount.value));
     return cards.value;
   } catch (err) {
-    console.log(err, err.statusCode);
     if (err.statusCode === 429) {
       emit(
         'open-modal',
