@@ -51,7 +51,7 @@ const props = defineProps<{
   &__title {
     font-size: 20px;
     line-height: normal;
-    color: #34c759;
+    color: #5e6600;
     font-weight: 400;
   }
 }

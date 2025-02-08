@@ -197,11 +197,11 @@ const handleChooseMeal = (section: string) => {
     transition: color 0.2s;
     font-size: 22px;
     line-height: normal;
-    color: #d9d9d9;
+    color: #000000;
     font-weight: 400;
 
     &:hover {
-      color: #85878c;
+      color: #233000;
     }
   }
 
@@ -210,7 +210,7 @@ const handleChooseMeal = (section: string) => {
     background-color: transparent;
 
     &_active {
-      border-bottom: 2px solid #85878c;
+      border-bottom: 2px dashed #000;
     }
   }
 }

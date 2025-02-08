@@ -1,5 +1,5 @@
 import { BASE_URL, HOST, KEY, KEY_NAME, URL_NAME } from '../../config.ts';
-import type { CardType, UserAuth } from '@/components/types/types.ts'
+import type { CardType } from '@/components/types/types.ts';
 
 export const fetchRecipes = (
   query: string,
@@ -20,7 +20,9 @@ export const fetchRecipes = (
             reject(new Error('Тело ответа не является успешным: ' + error.message));
           }
         } else {
-          reject(new Error(`Ошибка: ${this.status} ${this.statusText}`));
+          const error = new Error(`Ошибка: ${this.status} ${this.statusText}`);
+          (error as any).statusCode = this.status;
+          reject(error);
         }
       }
     });
@@ -32,6 +34,34 @@ export const fetchRecipes = (
     }
     const url = params.length > 0 ? `${baseUrl}&${params.join('&')}` : baseUrl;
     xhr.open('GET', url);
+    xhr.setRequestHeader(KEY_NAME, KEY);
+    xhr.setRequestHeader(URL_NAME, HOST);
+    xhr.send();
+  });
+};
+
+export const getCurrentRecipe = (id: number): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener('readystatechange', function () {
+      if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status >= 200 && this.status < 300) {
+          try {
+            const res = JSON.parse(this.responseText);
+            resolve(res);
+          } catch (error: any) {
+            reject(new Error('Тело ответа не является успешным: ' + error.message));
+          }
+        } else {
+          reject(new Error(`Ошибка: ${this.status} ${this.statusText}`));
+        }
+      }
+    });
+    // list?from=0&size=30&id=3562
+    const baseUrl = `${BASE_URL}recipes/get-more-info?id=${id}`;
+
+    xhr.open('GET', baseUrl);
     xhr.setRequestHeader(KEY_NAME, KEY);
     xhr.setRequestHeader(URL_NAME, HOST);
     xhr.send();

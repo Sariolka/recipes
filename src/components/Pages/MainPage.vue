@@ -6,7 +6,9 @@ import SearchForm from '@/components/Details/SearchForm.vue';
 import type { CardType, ResType } from '@/components/types/types.ts';
 import { deleteRecipe, fetchRecipes, loadSavedRecipes, saveRecipe } from '@/api/api.ts';
 import { CARDS_COUNT } from '../../../config.ts';
+import { useAuthStore } from '@/components/Stores/auth.ts';
 
+const store = useAuthStore();
 const res = ref<ResType | null>(null);
 const result = ref<any[]>([]);
 const cards = ref<CardType[]>([]);
@@ -20,6 +22,7 @@ const chosenTime = ref('');
 const chosenMeal = ref('');
 const errorText = ref(false);
 const savedRecipes = ref<CardType[]>([]);
+const emit = defineEmits(['open-modal']);
 
 // Сохранить/удалить рецепт
 const toggleSave = async (recipe: CardType) => {
@@ -63,6 +66,7 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
     res.value = (await fetchRecipes(query, counter, timeTag, meal)) as ResType;
     result.value = res.value.results;
     totalCount.value = res.value.count;
+    store.setData();
     savedRecipes.value = await loadSavedRecipes();
     if (result.value.length) {
       cards.value = result.value.map((recipe: any) => ({
@@ -82,7 +86,15 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
     sessionStorage.setItem('totalCount', JSON.stringify(totalCount.value));
     return cards.value;
   } catch (err) {
-    console.log(err);
+    if (err.statusCode === 429) {
+      emit(
+        'open-modal',
+        'К сожалению, лимит запросов на месяц исчерпан. :( ' +
+          'You have exceeded the MONTHLY quota for Requests on your current plan, BASIC.'
+      );
+    } else {
+      emit('open-modal', 'Произошла ошибка при загрузке рецептов');
+    }
   } finally {
     isLoading.value = false;
     errorText.value = false;
@@ -130,8 +142,10 @@ onMounted(async () => {
   const totalCounter = sessionStorage.getItem('totalCount');
   if (lastSearchQuery) {
     searchQuery.value = lastSearchQuery;
+
     if (currentCards) {
       cards.value = JSON.parse(currentCards);
+      store.setData();
       if (totalCounter) {
         totalCount.value = JSON.parse(totalCounter);
       }
@@ -176,6 +190,10 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &__btn {
+    width: 100px;
+  }
 
   &__search-form {
     margin-top: 70px;

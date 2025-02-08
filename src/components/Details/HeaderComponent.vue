@@ -1,21 +1,37 @@
 <script setup lang="ts">
-import logo from '@/components/Icons/logo.svg';
+import logo from '@/components/Icons/Subtract.png';
 import { useAuthStore } from '@/components/Stores/auth.ts';
 import { computed } from 'vue';
+import router from '@/router/router.ts';
+import { useRoute } from 'vue-router';
 const store = useAuthStore();
 const user = computed(() => store.user);
 const isAuthenticated = computed(() => store.token);
+const route = useRoute();
+
+const props = defineProps<{
+  hasData: boolean;
+}>();
+
+const handlePushToMain = () => {
+  if (route.path !== '') {
+    router.push('/');
+  }
+};
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'header_type-background': hasData || route.path !== '/' }">
     <div class="header__container">
-      <div class="header__logo-container">
-        <img class="header__logo" :src="logo" alt="Логотип" />
-        <h1 class="header__title">Find a Recipe</h1>
+      <div class="header__left">
+        <div class="header__icon"></div>
+        <div class="header__logo-container" @click="handlePushToMain">
+          <img class="header__logo" :src="logo" alt="Логотип" />
+          <h1 class="header__title">Find a Recipe</h1>
+        </div>
       </div>
+
       <nav class="header__nav">
-        <router-link to="/" class="header__link"> Main </router-link>
         <router-link to="/favourites" class="header__link" v-if="isAuthenticated">
           Favourites
         </router-link>
@@ -52,16 +68,28 @@ const isAuthenticated = computed(() => store.token);
   justify-content: end;
   cursor: default;
 
+  &_type-background {
+    background-color: #233000;
+  }
+
   &__logo-container {
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 2px;
   }
 
   &__container {
     display: flex;
     align-items: center;
-    padding-left: 125px;
+    padding-left: 90px;
     padding-right: 125px;
     margin-top: auto;
     margin-bottom: auto;
@@ -87,7 +115,11 @@ const isAuthenticated = computed(() => store.token);
   }
 
   &__logo {
-    margin-bottom: 5px;
+    position: absolute;
+    width: 140px;
+    height: 60px;
+    bottom: -14px;
+    left: 19px;
   }
 
   &__user-block {
@@ -97,32 +129,43 @@ const isAuthenticated = computed(() => store.token);
   }
 
   &__title {
-    font-size: 24px;
+    font-family: 'Rufina', sans-serif;
+    font-size: 28px;
     font-weight: 700;
     line-height: normal;
-    color: #34c759;
+    color: #ebf0e4;
     margin-top: 0;
     margin-bottom: 0;
     white-space: nowrap;
   }
 
   &__link {
+    font-family: 'Rufina', sans-serif;
     display: inline-flex;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     line-height: normal;
     text-decoration: none;
-    color: #fff;
+    color: #ebf0e4;
     cursor: pointer;
   }
 
   &__user {
+    font-family: 'Lato', sans-serif;
     text-transform: uppercase;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 700;
     line-height: normal;
-    color: #fff;
-    margin-bottom: 3px;
+    color: #ebf0e4;
+  }
+
+  &__icon {
+    background-image: url('@/components/Icons/carrot.svg');
+    background-size: cover;
+    background-position: center;
+    width: 70px;
+    aspect-ratio: 342/300;
+    background-repeat: no-repeat;
   }
 }
 </style>

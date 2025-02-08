@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import type { CardType } from '@/components/types/types.ts';
 import { REDIRECT_URL, TIME_MINUTES } from '../../../config.ts';
 import { useAuthStore } from '@/components/Stores/auth.ts';
+import router from '@/router/router.ts';
 const store = useAuthStore();
 
 const props = defineProps<{
@@ -42,7 +43,7 @@ const computedTime = computed(() => {
         {{ !card.description ? "Click 'Show more' to get more information" : card.description }}
       </p>
       <div class="card__footer">
-        <a :href="REDIRECT_URL + `${card.slug}`" class="card__link" target="_blank">SHOW MORE</a>
+        <router-link :to="`/${card.id}`" class="card__link">SHOW MORE</router-link>
       </div>
     </div>
   </li>
@@ -55,8 +56,7 @@ const computedTime = computed(() => {
   width: 350px;
   height: 530px;
   box-shadow: 0 2px 5px 0 #0000001a;
-  background-color: #252525;
-  border-radius: 6px;
+  background-color: #ebf0e4;
   cursor: default;
   position: relative;
 
@@ -64,7 +64,6 @@ const computedTime = computed(() => {
     width: 350px;
     height: 260px;
     aspect-ratio: 35/26;
-    border-radius: 6px 6px 0 0;
     object-fit: cover;
     object-position: center;
     position: relative;
@@ -126,9 +125,10 @@ const computedTime = computed(() => {
   }
 
   &__title {
+    font-family: 'Rufina', sans-serif;
     font-size: 28px;
     line-height: normal;
-    color: #d9d9d9;
+    color: #000000;
     font-weight: 400;
     margin-bottom: 2px;
     display: -webkit-box;
@@ -138,18 +138,20 @@ const computedTime = computed(() => {
   }
 
   &__time-control {
+    font-family: 'Lato', sans-serif;
     font-size: 12px;
     line-height: 16px;
     letter-spacing: -0.15px;
-    color: #a4a8b2;
+    color: #4d4d4d;
     margin-bottom: 20px;
   }
 
   &__description {
+    font-family: 'Lato', sans-serif;
     font-size: 13px;
     line-height: 18px;
     letter-spacing: -0.16px;
-    color: #85878c;
+    color: #4d4d4d;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
@@ -164,14 +166,15 @@ const computedTime = computed(() => {
   }
 
   &__link {
-    font-size: 10px;
-    font-weight: 900;
+    font-family: 'Rufina', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
     line-height: normal;
     text-decoration: none;
-    border-radius: 40px;
-    color: #252525;
-    background-color: #34c759;
-    padding: 13px 40px;
+    color: #ffffff;
+    background-color: #5e6600;
+    box-shadow: 1px 1px 12px 0 #00000014;
+    padding: 13px 30px;
     height: 40px;
     white-space: nowrap;
   }

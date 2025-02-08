@@ -87,10 +87,10 @@ const handleClose = () => {
     <div class="modal-background" @click="handleClose"></div>
     <div class="modal-card modal__card">
       <header class="modal-card-head modal__head">
-        <p class="modal-card-title">Create an account</p>
+        <p class="modal-card-title modal__title">Create an account</p>
         <button class="delete modal__close" aria-label="close" @click="handleClose"></button>
       </header>
-      <section class="modal-card-body">
+      <section class="modal-card-body modal__body">
         <form novalidate class="modal__form" @submit.prevent="onSubmit" id="register">
           <div class="modal__container">
             <label for="name">Name</label>
@@ -154,11 +154,15 @@ const handleClose = () => {
 
   &__head {
     box-shadow: none;
+    background-color: #ebf0e4;
   }
 
-  &__foot {
-    background-color: #fff;
-    position: relative;
+  &__body {
+    background-color: #ebf0e4;
+  }
+
+  &__title {
+    font-family: 'Rufina', sans-serif;
   }
 
   &__error-text {
@@ -182,11 +186,22 @@ const handleClose = () => {
 
   &__button {
     width: 150px;
+    background-color: #233000;
+    padding: 9px 30px;
+    font-family: 'Rufina', sans-serif;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: normal;
+    outline: transparent;
+    color: #ffffff;
+    border-radius: 0;
   }
 
   &__input {
     outline: transparent;
     margin-bottom: 5px;
+    border-radius: 0;
   }
 
   &__form {
@@ -199,6 +214,8 @@ const handleClose = () => {
     width: 100%;
     display: flex;
     justify-content: end;
+    background-color: #ebf0e4;
+    position: relative;
   }
 
   &__error {
@@ -214,10 +231,5 @@ const handleClose = () => {
   &__container {
     position: relative;
   }
-}
-
-.modal-card-body {
-  padding-left: 32px;
-  padding-right: 14px;
 }
 </style>

@@ -3,6 +3,7 @@ import MainPage from '@/components/Pages/MainPage.vue';
 import FavouritesPage from '@/components/Pages/FavouritesPage.vue';
 import ErrorPage from '@/components/Pages/ErrorPage.vue';
 import { useAuthStore } from '@/components/Stores/auth.ts';
+import RecipePage from '@/components/Pages/RecipePage.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,6 +18,11 @@ const router = createRouter({
       name: 'Favourites',
       component: FavouritesPage,
       meta: { user: true }
+    },
+    {
+      path: '/:id',
+      name: 'RecipePage',
+      component: RecipePage
     },
     { path: '/404', component: ErrorPage },
     { path: '/:pathMatch(.*)*', redirect: '/404' }
