@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import MainPage from '@/components/Pages/MainPage.vue';
 import FavouritesPage from '@/components/Pages/FavouritesPage.vue';
 import ErrorPage from '@/components/Pages/ErrorPage.vue';
-import { useAuthStore } from '@/components/Stores/auth.ts';
+import { useAuthStore } from '@/stores/auth.ts';
 import RecipePage from '@/components/Pages/RecipePage.vue';
 
 const router = createRouter({

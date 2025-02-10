@@ -1,4 +1,4 @@
-import router from '@/router/router';
+import router from '@/router/router.ts';
 
 export const pushTo404 = () => {
   router.push(`/404`).catch((error) => {

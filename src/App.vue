@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router';
 import HeaderComponent from '@/components/Details/HeaderComponent.vue';
-import videoWebm from '@/components/Video/video-webm.webm';
-import video from '@/components/Video/video.mp4';
+import videoWebm from '@/video/video-webm.webm';
+import video from '@/video/video.mp4';
 import ModalRegister from '@/components/Details/ModalRegister.vue';
 import { computed, ref, watch } from 'vue';
-import { useAuthStore } from '@/components/Stores/auth.ts';
+import { useAuthStore } from '@/stores/auth.ts';
 import ModalLogin from '@/components/Details/ModalLogin.vue';
 import ModalSuccess from '@/components/Details/ModalWarning.vue';
 import FooterComponent from '@/components/Details/FooterComponent.vue';

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import logo from '@/components/Icons/Subtract.png';
-import { useAuthStore } from '@/components/Stores/auth.ts';
+import logo from '@/icons/Subtract.png';
+import { useAuthStore } from '@/stores/auth.ts';
 import { computed } from 'vue';
 import router from '@/router/router.ts';
 import { useRoute } from 'vue-router';
@@ -160,7 +160,7 @@ const handlePushToMain = () => {
   }
 
   &__icon {
-    background-image: url('@/components/Icons/carrot.svg');
+    background-image: url('@/icons/carrot.svg');
     background-size: cover;
     background-position: center;
     width: 70px;

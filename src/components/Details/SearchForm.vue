@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import IconLoading from '@/components/Icons/IconLoading.vue';
-import { mealOptions, timeOptions } from '@/components/Constants/constants.ts';
+import IconLoading from '@/icons/IconLoading.vue';
+import { mealOptions, timeOptions } from '@/constants/constants.ts';
 
 const props = defineProps<{
   initialQuery: string;
@@ -112,7 +112,7 @@ watch(
     position: absolute;
     bottom: 14px;
     left: 12px;
-    background-image: url('../Icons/search.svg');
+    background-image: url('../../icons/search.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -127,7 +127,7 @@ watch(
     position: absolute;
     bottom: 11px;
     right: 12px;
-    background-image: url('../Icons/close.svg');
+    background-image: url('../../icons/close.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
