@@ -46,10 +46,10 @@ const route = useRoute();
     background-size: contain;
 
     &_type-tg {
-      background-image: url('@/components/Icons/telegram.svg');
+      background-image: url('@/icons/telegram.svg');
     }
     &_type-gh {
-      background-image: url('@/components/Icons/github.svg');
+      background-image: url('@/icons/github.svg');
     }
   }
 }

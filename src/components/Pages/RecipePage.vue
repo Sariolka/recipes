@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { pushTo404 } from '@/components/Helpers/pushTo404.ts';
+import { pushTo404 } from '@/helpers/pushTo404.ts';
 import { onMounted, ref } from 'vue';
 import { getCurrentRecipe } from '@/api/api.ts';
 

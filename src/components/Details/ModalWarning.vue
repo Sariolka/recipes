@@ -40,7 +40,7 @@ const props = defineProps<{
   }
 
   &__close {
-    background-image: url('../Icons/close.svg');
+    background-image: url('../../icons/close.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

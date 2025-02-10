@@ -3,7 +3,7 @@ import { useField, useForm } from 'vee-validate';
 import { toTypedSchema } from '@vee-validate/zod';
 import * as zod from 'zod';
 import { register } from '@/api/api.ts';
-import { useAuthStore } from '@/components/Stores/auth.ts';
+import { useAuthStore } from '@/stores/auth.ts';
 import { ref } from 'vue';
 
 const props = defineProps<{
@@ -23,7 +23,7 @@ const validationSchema = toTypedSchema(
       .string()
       .nonempty('The Password field is required')
       .min(6, { message: 'Password must be longer than 6 characters' }),
-    userName: zod.string().nonempty('Field is required').min(2, { message: 'Too short' })
+    userName: zod.string().nonempty('Field is required').min(2, { message: 'Too short' }).regex(/^[a-zA-Z0-9]+$/, { message: 'User  name must contain only letters and numbers' })
   })
 );
 
@@ -176,7 +176,7 @@ const handleClose = () => {
   }
 
   &__close {
-    background-image: url('../Icons/close.svg');
+    background-image: url('../../icons/close.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

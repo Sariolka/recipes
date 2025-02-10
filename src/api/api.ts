@@ -1,5 +1,5 @@
 import { BASE_URL, HOST, KEY, KEY_NAME, URL_NAME } from '../../config.ts';
-import type { CardType } from '@/components/types/types.ts';
+import type { CardType } from '@/types/types.ts';
 
 export const fetchRecipes = (
   query: string,

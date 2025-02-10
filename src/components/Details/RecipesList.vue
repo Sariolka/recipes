@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import RecipeCard from '@/components/Details/RecipeCard.vue';
-import type { CardType } from '@/components/types/types.ts';
+import type { CardType } from '@/types/types.ts';
 
 const props = defineProps<{
   cards: CardType[];

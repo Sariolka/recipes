@@ -2,7 +2,7 @@
 import { computed, onMounted, ref, watch } from 'vue';
 import { VueAwesomePaginate } from 'vue-awesome-paginate';
 import RecipesList from '@/components/Details/RecipesList.vue';
-import type { CardType } from '@/components/types/types.ts';
+import type { CardType } from '@/types/types.ts';
 import { changeSave, deleteRecipe, loadSavedRecipes } from '@/api/api.ts';
 import { CARDS_COUNT } from '../../../config.ts';
 

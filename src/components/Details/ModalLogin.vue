@@ -2,7 +2,7 @@
 import { useField, useForm } from 'vee-validate';
 import { toTypedSchema } from '@vee-validate/zod';
 import * as zod from 'zod';
-import { useAuthStore } from '@/components/Stores/auth.ts';
+import { useAuthStore } from '@/stores/auth.ts';
 import { ref } from 'vue';
 import { signin } from '@/api/api.ts';
 
@@ -84,7 +84,7 @@ const handleClose = () => {
         <button class="delete modal__close" aria-label="close" @click="$emit('close')"></button>
       </header>
       <section class="modal-card-body modal__body">
-        <form class="modal__form" @submit.prevent="onSubmit" id="login">
+        <form class="modal__form" @submit.prevent="onSubmit" id="login" novalidate>
           <div class="modal__container">
             <label for="email">Email</label>
             <input class="input modal__input" v-model="email" type="email" id="email" />
@@ -171,7 +171,7 @@ const handleClose = () => {
   }
 
   &__close {
-    background-image: url('../Icons/close.svg');
+    background-image: url('../../icons/close.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
