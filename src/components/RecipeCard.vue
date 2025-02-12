@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { CardType } from '@/types/types.ts';
-import { REDIRECT_URL, TIME_MINUTES } from '../../../config.ts';
+import { REDIRECT_URL, TIME_MINUTES } from '../../config.ts';
 import { useAuthStore } from '@/stores/auth.ts';
 import router from '@/router/router.ts';
 const store = useAuthStore();
@@ -100,7 +100,7 @@ const computedTime = computed(() => {
   }
 
   &__like {
-    background-image: url('../../icons/mark.svg');
+    background-image: url('../icons/mark.svg');
     width: 27px;
     height: 27px;
     background-size: contain;
@@ -113,7 +113,7 @@ const computedTime = computed(() => {
     cursor: pointer;
 
     &_active {
-      background-image: url('../../icons/mark-fill.svg');
+      background-image: url('../icons/mark-fill.svg');
     }
   }
 

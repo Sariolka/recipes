@@ -112,7 +112,7 @@ watch(
     position: absolute;
     bottom: 14px;
     left: 12px;
-    background-image: url('../../icons/search.svg');
+    background-image: url('../icons/search.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -127,7 +127,7 @@ watch(
     position: absolute;
     bottom: 11px;
     right: 12px;
-    background-image: url('../../icons/close.svg');
+    background-image: url('../icons/close.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
