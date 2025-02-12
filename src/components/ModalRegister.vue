@@ -2,9 +2,9 @@
 import { useField, useForm } from 'vee-validate';
 import { toTypedSchema } from '@vee-validate/zod';
 import * as zod from 'zod';
+import { register } from '@/api/api.ts';
 import { useAuthStore } from '@/stores/auth.ts';
 import { ref } from 'vue';
-import { signin } from '@/api/api.ts';
 
 const props = defineProps<{
   isOpen: boolean;
@@ -14,7 +14,7 @@ const store = useAuthStore();
 const isLoading = ref(false);
 const errorText = ref('');
 
-const emit = defineEmits(['close', 'submit', 'open-modal', 'openRegisterModal']);
+const emit = defineEmits(['close', 'submit', 'open-modal']);
 
 const validationSchema = toTypedSchema(
   zod.object({
@@ -22,7 +22,8 @@ const validationSchema = toTypedSchema(
     password: zod
       .string()
       .nonempty('The Password field is required')
-      .min(6, { message: 'Password must be longer than 6 characters' })
+      .min(6, { message: 'Password must be longer than 6 characters' }),
+    userName: zod.string().nonempty('Field is required').min(2, { message: 'Too short' }).regex(/^[a-zA-Z0-9]+$/, { message: 'User  name must contain only letters and numbers' })
   })
 );
 
@@ -32,24 +33,30 @@ const { handleSubmit, errors, resetForm } = useForm({
 
 const { value: email } = useField('email');
 const { value: password } = useField('password');
+const { value: userName } = useField('userName');
 
-const handleSignin = async (email: string, password: string) => {
+const handleRegister = async (name: string, email: string, password: string) => {
   if (isLoading.value) {
     return;
   }
+  if (!name || !email || !password) {
+    return;
+  }
   isLoading.value = true;
+  errorText.value = '';
   try {
-    const user = {
+    const newData = {
+      name: name,
       email: email,
       password: password
     };
-    const resSignin = await signin(user);
-    if (resSignin && resSignin.user && resSignin.accessToken) {
-      store.setUser(resSignin.user.name);
-      store.setToken(resSignin.accessToken);
+    const resSignUp = await register(newData);
+    if (resSignUp && resSignUp.user && resSignUp.accessToken) {
+      store.setUser(resSignUp.user.name);
+      store.setToken(resSignUp.accessToken);
       return true;
     } else {
-      errorText.value = resSignin;
+      errorText.value = resSignUp;
     }
   } catch (error: any) {
     console.error(error);
@@ -61,7 +68,7 @@ const handleSignin = async (email: string, password: string) => {
 };
 
 const onSubmit = handleSubmit(async (values) => {
-  const success = await handleSignin(values.email, values.password);
+  const success = await handleRegister(values.userName, values.email, values.password);
   if (success) {
     handleClose();
     emit('open-modal', 'You are successfully logged in');
@@ -77,23 +84,41 @@ const handleClose = () => {
 
 <template>
   <div class="modal" :class="{ 'is-active': isOpen }">
-    <div class="modal-background" @click="$emit('close')"></div>
+    <div class="modal-background" @click="handleClose"></div>
     <div class="modal-card modal__card">
       <header class="modal-card-head modal__head">
-        <p class="modal-card-title modal__title">Access Your Account</p>
-        <button class="delete modal__close" aria-label="close" @click="$emit('close')"></button>
+        <p class="modal-card-title modal__title">Create an account</p>
+        <button class="delete modal__close" aria-label="close" @click="handleClose"></button>
       </header>
       <section class="modal-card-body modal__body">
-        <form class="modal__form" @submit.prevent="onSubmit" id="login" novalidate>
+        <form novalidate class="modal__form" @submit.prevent="onSubmit" id="register">
+          <div class="modal__container">
+            <label for="name">Name</label>
+            <input
+              class="input modal__input"
+              v-model="userName"
+              type="text"
+              id="userName"
+              name="userName"
+            />
+            <span class="modal__error">{{ errors.userName }}</span>
+          </div>
           <div class="modal__container">
             <label for="email">Email</label>
-            <input class="input modal__input" v-model="email" type="email" id="email" />
+            <input
+              class="input modal__input"
+              v-model="email"
+              type="email"
+              id="email"
+              name="email"
+            />
             <span class="modal__error">{{ errors.email }}</span>
           </div>
 
           <div class="modal__container">
             <label for="password">Password</label>
             <input
+              name="password"
               v-model="password"
               class="input modal__input"
               type="password"
@@ -106,19 +131,13 @@ const handleClose = () => {
       </section>
       <footer class="modal-card-foot modal__foot">
         <span class="modal__error-text" v-if="errorText">{{ errorText }}</span>
-        <p>
-          Don't have an account?
-          <button class="button is-white modal__link" @click="$emit('openRegisterModal')">
-            Register
-          </button>
-        </p>
         <button
           class="button is-dark modal__button"
           type="submit"
-          form="login"
+          form="register"
           :class="{ 'is-loading': isLoading }"
         >
-          Submit
+          Save
         </button>
       </footer>
     </div>
@@ -146,24 +165,10 @@ const handleClose = () => {
     font-family: 'Rufina', sans-serif;
   }
 
-  &__error {
-    position: absolute;
-    bottom: -15px;
-    left: 0;
-    font-size: 13px;
-    line-height: normal;
-    color: #b91c1c;
-    font-weight: 400;
-  }
-
-  &__container {
-    position: relative;
-  }
-
   &__error-text {
     position: absolute;
     bottom: 90px;
-    right: 32px;
+    right: 30px;
     font-size: 13px;
     line-height: normal;
     color: #b91c1c;
@@ -171,12 +176,26 @@ const handleClose = () => {
   }
 
   &__close {
-    background-image: url('../../icons/close.svg');
+    background-image: url('../icons/close.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     width: 24px;
     height: 24px;
+  }
+
+  &__button {
+    width: 150px;
+    background-color: #233000;
+    padding: 9px 30px;
+    font-family: 'Rufina', sans-serif;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: normal;
+    outline: transparent;
+    color: #ffffff;
+    border-radius: 0;
   }
 
   &__input {
@@ -194,31 +213,23 @@ const handleClose = () => {
   &__foot {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     background-color: #ebf0e4;
     position: relative;
   }
 
-  &__button {
-    width: 150px;
-    border-radius: 0;
-    font-family: 'Rufina', sans-serif;
-    background-color: #233000;
-    padding: 9px 30px;
-    font-style: normal;
-    font-size: 15px;
-    font-weight: 700;
+  &__error {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    font-size: 13px;
     line-height: normal;
-    outline: transparent;
-    color: #ffffff;
+    color: #b91c1c;
+    font-weight: 400;
   }
 
-  &__link {
-    padding: 0;
-    background-color: #ebf0e4;
-    &:hover {
-      background-color: transparent;
-    }
+  &__container {
+    position: relative;
   }
 }
 </style>

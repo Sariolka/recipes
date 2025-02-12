@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import RecipeCard from '@/components/Details/RecipeCard.vue';
+import RecipeCard from '@/components/RecipeCard.vue';
 import type { CardType } from '@/types/types.ts';
 
 const props = defineProps<{

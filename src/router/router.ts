@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import MainPage from '@/components/Pages/MainPage.vue';
-import FavouritesPage from '@/components/Pages/FavouritesPage.vue';
-import ErrorPage from '@/components/Pages/ErrorPage.vue';
+import MainPage from '@/pages/MainPage.vue';
+import FavouritesPage from '@/pages/FavouritesPage.vue';
+import ErrorPage from '@/pages/ErrorPage.vue';
 import { useAuthStore } from '@/stores/auth.ts';
-import RecipePage from '@/components/Pages/RecipePage.vue';
+import RecipePage from '@/pages/RecipePage.vue';
 
 const router = createRouter({
   history: createWebHistory(),

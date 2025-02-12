@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
 import { VueAwesomePaginate } from 'vue-awesome-paginate';
-import RecipesList from '@/components/Details/RecipesList.vue';
+import RecipesList from '@/components/RecipesList.vue';
 import type { CardType } from '@/types/types.ts';
 import { changeSave, deleteRecipe, loadSavedRecipes } from '@/api/api.ts';
-import { CARDS_COUNT } from '../../../config.ts';
+import { CARDS_COUNT } from '../../config.ts';
 
 const cards = ref<CardType[]>([]);
 const currentPage = ref(1);
