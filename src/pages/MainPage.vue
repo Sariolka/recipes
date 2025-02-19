@@ -67,7 +67,9 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
     result.value = res.value.results;
     totalCount.value = res.value.count;
     store.setData();
-    savedRecipes.value = await loadSavedRecipes();
+    if(store.user) {
+      savedRecipes.value = await loadSavedRecipes();
+    }
     if (result.value.length) {
       cards.value = result.value.map((recipe: any) => ({
         slug: recipe.slug,
