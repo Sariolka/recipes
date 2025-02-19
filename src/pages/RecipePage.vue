@@ -29,33 +29,33 @@ const loadRecipe = async () => {
 
 loadRecipe();
 
-const nutritionData = [
-  {
-    Calories: recipe.value.nutrition.calories,
-    Fat: recipe.value.nutrition.fat,
-    Carbs: recipe.value.nutrition.carbohydrates,
-    Sugar: recipe.value.nutrition.sugar,
-    Fiber: recipe.value.nutrition.fiber,
-    Protein: recipe.value.nutrition.protein
-  }
-];
+// const nutritionData = [
+//   {
+//     Calories: recipe.value.nutrition.calories,
+//     Fat: recipe.value.nutrition.fat,
+//     Carbs: recipe.value.nutrition.carbohydrates,
+//     Sugar: recipe.value.nutrition.sugar,
+//     Fiber: recipe.value.nutrition.fiber,
+//     Protein: recipe.value.nutrition.protein
+//   }
+// ];
 </script>
 
 <template>
   <section class="recipe-page">
-    <h1 class="recipe-page__title">{{ recipe.name }}</h1>
-    <p class="recipe-page__description">{{ recipe.description }}</p>
-    <h2 class="recipe-page__nutrition">Nutrition Info</h2>
-    <ul class="recipe-page__nutrition-list">
-      <li class="recipe-page__nutrition-item"></li>
-    </ul>
-    <video
-      :poster="recipe?.thumbnail_url"
-      :src="recipe?.original_video_url"
-      typeof="video/mp4"
-      preload="metadata"
-      class="recipe-page__video"
-    ></video>
+<!--    <h1 class="recipe-page__title">{{ recipe.name }}</h1>-->
+<!--    <p class="recipe-page__description">{{ recipe.description }}</p>-->
+<!--    <h2 class="recipe-page__nutrition">Nutrition Info</h2>-->
+<!--    <ul class="recipe-page__nutrition-list">-->
+<!--      <li class="recipe-page__nutrition-item"></li>-->
+<!--    </ul>-->
+<!--    <video-->
+<!--      :poster="recipe?.thumbnail_url"-->
+<!--      :src="recipe?.original_video_url"-->
+<!--      typeof="video/mp4"-->
+<!--      preload="metadata"-->
+<!--      class="recipe-page__video"-->
+<!--    ></video>-->
   </section>
 </template>
 
