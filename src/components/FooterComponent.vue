@@ -7,7 +7,7 @@ const route = useRoute();
 </script>
 
 <template>
-  <footer class="footer" :class="{ 'footer_type-main': route.path === '/' }">
+  <footer class="footer">
     <a href="https://t.me/Sariolka" class="footer__link footer__link_type-tg"></a>
     <a href="https://github.com/Sariolka" class="footer__link footer__link_type-gh"></a>
     <div class="footer__auth">Copyright © {{ computerYear }}</div>
@@ -24,10 +24,6 @@ const route = useRoute();
   padding: 20px 100px;
   background-color: #233000;
   gap: 15px;
-
-  &_type-main {
-    background-color: transparent;
-  }
 
   &__auth {
     font-family: 'Lato', sans-serif;

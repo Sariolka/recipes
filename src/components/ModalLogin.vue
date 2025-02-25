@@ -47,6 +47,7 @@ const handleSignin = async (email: string, password: string) => {
     if (resSignin && resSignin.user && resSignin.accessToken) {
       store.setUser(resSignin.user.name);
       store.setToken(resSignin.accessToken);
+      console.log(store.token, store.user);
       return true;
     } else {
       errorText.value = resSignin;

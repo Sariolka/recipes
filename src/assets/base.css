@@ -10,6 +10,8 @@ body {
   min-height: 100vh;
   min-width: 600px;
   font-family: 'Lato', sans-serif;
+  font-style: normal;
+  line-height: normal;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth.ts';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import videoWebm from '@/video/video-webm.webm';
 import video from '@/video/video.mp4';
 import ModalRegister from '@/components/ModalRegister.vue';
-import { computed, ref, watch } from 'vue';
-import { useAuthStore } from '@/stores/auth.ts';
 import ModalLogin from '@/components/ModalLogin.vue';
 import ModalSuccess from '@/components/ModalWarning.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
@@ -18,7 +18,6 @@ const isLoginModalOpen = ref(false);
 const isWarningModalOpen = ref(false);
 const warningText = ref('');
 const hasData = computed(() => {
-  console.log(store.data);
   return store.data;
 });
 
@@ -27,6 +26,7 @@ const handleOpenRegisterModal = () => {
   isLoginModalOpen.value = false;
   isRegisterModalOpen.value = true;
 };
+
 const closeRegisterModal = () => {
   isRegisterModalOpen.value = false;
 };
@@ -34,6 +34,7 @@ const closeRegisterModal = () => {
 const handleOpenLoginModal = () => {
   isLoginModalOpen.value = true;
 };
+
 const closeLoginModal = () => {
   isLoginModalOpen.value = false;
 };
@@ -45,13 +46,13 @@ const handleOpenWarningModal = (text: string) => {
     closeWarningModal();
   }, 3000);
 };
+
 const closeWarningModal = () => {
   isWarningModalOpen.value = false;
 };
 
 const handleLogout = () => {
-  store.setToken(null);
-  store.setUser(null);
+  store.logout();
 };
 
 watch(
@@ -62,6 +63,13 @@ watch(
     }
   }
 );
+
+onMounted(async () => {
+  if (store.token) {
+    store.setToken(store.token);
+    store.setUser(store.user);
+  }
+});
 </script>
 
 <template>

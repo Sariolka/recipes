@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import logo from '@/icons/Subtract.png';
-import { useAuthStore } from '@/stores/auth.ts';
 import { computed } from 'vue';
+import { useAuthStore } from '@/stores/auth.ts';
 import router from '@/router/router.ts';
 import { useRoute } from 'vue-router';
+import logo from '@/icons/Subtract.png';
+
 const store = useAuthStore();
 const user = computed(() => store.user);
-const isAuthenticated = computed(() => store.token);
+const isAuthenticated = computed(() => store.isAuthenticated);
 const route = useRoute();
 
 const props = defineProps<{
@@ -96,8 +97,8 @@ const handlePushToMain = () => {
     justify-content: space-between;
 
     @media screen and (max-width: 800px) {
-      padding-left: 65px;
-      padding-right: 65px;
+      padding-left: 30px;
+      padding-right: 30px;
     }
   }
 

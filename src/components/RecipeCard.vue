@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { CardType } from '@/types/types.ts';
-import { REDIRECT_URL, TIME_MINUTES } from '../../config.ts';
+import { TIME_MINUTES } from '../../config.ts';
 import { useAuthStore } from '@/stores/auth.ts';
-import router from '@/router/router.ts';
+import RateComponent from '@/components/RateComponent.vue';
 const store = useAuthStore();
 
 const props = defineProps<{
   card: CardType;
 }>();
-
+console.log(props.card);
 const isAuthenticated = computed(() => store.token);
 
 const computedTime = computed(() => {
@@ -23,6 +23,16 @@ const computedTime = computed(() => {
     return `${props.card.minutes} minutes`;
   }
 });
+
+const ratingInPersent = computed(() => {
+  if (props.card && props.card.user_ratings) {
+    return Math.round(props.card.user_ratings.score * 100);
+  }
+  return 0;
+});
+
+// console.log('Rating in percent:',props.card, ratingInPersent.value);
+// console.log(props.card.user_ratings)
 </script>
 
 <template>
@@ -31,7 +41,7 @@ const computedTime = computed(() => {
     <button
       v-if="isAuthenticated"
       class="card__like"
-      :class="{ card__like_active: card.isSaved }"
+      :class="{ card__like_active: card.isSaved === true }"
       @click="$emit('save-recipe')"
     ></button>
     <div class="card__info">
@@ -43,6 +53,7 @@ const computedTime = computed(() => {
         {{ !card.description ? "Click 'Show more' to get more information" : card.description }}
       </p>
       <div class="card__footer">
+        <RateComponent :rating="ratingInPersent" :id="card.id" class="card__rate"></RateComponent>
         <router-link :to="`/${card.id}`" class="card__link">SHOW MORE</router-link>
       </div>
     </div>
@@ -130,6 +141,7 @@ const computedTime = computed(() => {
     line-height: normal;
     color: #000000;
     font-weight: 400;
+    font-style: normal;
     margin-bottom: 2px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -162,7 +174,10 @@ const computedTime = computed(() => {
   &__footer {
     display: flex;
     align-self: end;
+    align-items: center;
     margin-top: 20px;
+    justify-content: space-between;
+    width: 100%;
   }
 
   &__link {
