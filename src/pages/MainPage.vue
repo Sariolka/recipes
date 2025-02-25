@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
+import { useAuthStore } from '@/stores/auth.ts';
+import { deleteRecipe, fetchRecipes, loadSavedRecipes, saveRecipe } from '@/api/api.ts';
 import { VueAwesomePaginate } from 'vue-awesome-paginate';
 import RecipesList from '@/components/RecipesList.vue';
 import SearchForm from '@/components/SearchForm.vue';
 import type { CardType, ResType } from '@/types/types.ts';
-import { deleteRecipe, fetchRecipes, loadSavedRecipes, saveRecipe } from '@/api/api.ts';
 import { CARDS_COUNT } from '../../config.ts';
-import { useAuthStore } from '@/stores/auth.ts';
+import PreloaderComponent from '@/components/PreloaderComponent.vue';
 
 const store = useAuthStore();
 const res = ref<ResType | null>(null);
@@ -67,18 +68,27 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
     result.value = res.value.results;
     totalCount.value = res.value.count;
     store.setData();
-    savedRecipes.value = await loadSavedRecipes();
+    if (store.user) {
+      savedRecipes.value = await loadSavedRecipes();
+    }
+
     if (result.value.length) {
-      cards.value = result.value.map((recipe: any) => ({
-        slug: recipe.slug,
-        name: recipe.name,
-        description: recipe.description,
-        thumbnailUrl: recipe.thumbnail_url,
-        minutes: recipe.total_time_minutes,
-        id: recipe.id.toString(),
-        isSaved: savedRecipes.value.some((i) => i.id === recipe.id),
-        tags: recipe.tags
-      }));
+      cards.value = await Promise.all(
+        result.value.map(async (recipe: any) => {
+          const isSaved = !!savedRecipes.value.find((i) => i.id === recipe.id.toString());
+          return {
+            slug: recipe.slug,
+            name: recipe.name,
+            description: recipe.description,
+            thumbnailUrl: recipe.thumbnail_url,
+            minutes: recipe.total_time_minutes,
+            id: recipe.id.toString(),
+            isSaved: isSaved,
+            tags: recipe.tags,
+            user_ratings: recipe.user_ratings
+          };
+        })
+      );
     } else {
       cards.value = [];
     }
@@ -169,8 +179,9 @@ onMounted(async () => {
       :isLoading="isLoading"
       :initialQuery="searchQuery"
     />
-    <RecipesList :cards="cards" v-if="cards.length" @save-recipe="toggleSave" />
-    <p class="main__warning" v-if="searchPerformed && result.length === 0 && !isLoading">
+    <PreloaderComponent v-if="isLoading" class="main__loader" />
+    <RecipesList :cards="cards" v-else-if="cards.length && !isLoading" @save-recipe="toggleSave" />
+    <p class="main__warning" v-else-if="searchPerformed && result.length === 0 && !isLoading">
       Nothing found
     </p>
     <vue-awesome-paginate
@@ -190,6 +201,13 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: auto;
+  flex-grow: 1;
+
+  &__loader {
+    align-self: center;
+    margin-top: 250px;
+  }
 
   &__btn {
     width: 100px;

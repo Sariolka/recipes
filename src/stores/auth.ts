@@ -7,15 +7,20 @@ interface AuthState {
 }
 
 export const useAuthStore = defineStore('auth', {
-  state: (): AuthState => ({
-    user: null,
-    token: null,
-    data: false
-  }),
+  state: (): AuthState => {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    return {
+      user: user,
+      token: token,
+      data: false
+    };
+  },
   actions: {
     // @ts-expect-error @typescript-eslint/ban-ts-comment
     setUser(user) {
       this.user = user;
+      localStorage.setItem('user', user);
     },
     // @ts-expect-error @typescript-eslint/ban-ts-comment
     setToken(token) {
@@ -29,10 +34,15 @@ export const useAuthStore = defineStore('auth', {
       this.user = null;
       this.token = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       this.data = false;
     }
   },
   getters: {
-    isAuthenticated: (state) => !!state.token
+    isAuthenticated: (state) => !!state.token,
+
+    getUser: (state) => () => {
+      return state.user;
+    }
   }
 });

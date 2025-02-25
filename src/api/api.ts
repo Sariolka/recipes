@@ -1,5 +1,9 @@
 import { BASE_URL, HOST, KEY, KEY_NAME, URL_NAME } from '../../config.ts';
 import type { CardType } from '@/types/types.ts';
+import { useAuthStore } from '@/stores/auth.ts';
+//
+// const store = useAuthStore();
+// const token = store.token;
 
 export const fetchRecipes = (
   query: string,
@@ -86,10 +90,19 @@ export const get = async <T>(path: string): Promise<T> => {
 };
 
 const makeHeaders = () => {
-  return {
+  const store = useAuthStore();
+  const token = store.token;
+
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
     Accept: 'application/json'
   };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  return headers;
 };
 
 export const post = async <T>(path: string, body: unknown): Promise<T> => {
@@ -124,7 +137,7 @@ export const deleteRecipe = async (id: string) => {
 };
 
 export const loadSavedRecipes = async () => {
-  return await get<[]>(`/favourites`);
+  return await get<CardType[]>(`/favourites`);
 };
 
 export const saveRecipe = async (recipe: CardType) => {

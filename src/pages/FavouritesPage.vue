@@ -5,14 +5,22 @@ import RecipesList from '@/components/RecipesList.vue';
 import type { CardType } from '@/types/types.ts';
 import { changeSave, deleteRecipe, loadSavedRecipes } from '@/api/api.ts';
 import { CARDS_COUNT } from '../../config.ts';
+import PreloaderComponent from '@/components/PreloaderComponent.vue';
 
 const cards = ref<CardType[]>([]);
 const currentPage = ref(1);
 const activeStatus = ref('all');
+const isLoading = ref(true);
 
 onMounted(async () => {
-  const cardsArray = await loadSavedRecipes();
-  cards.value = cardsArray.reverse();
+  try {
+    const cardsArray = await loadSavedRecipes();
+    cards.value = cardsArray.reverse();
+  } catch (e) {
+    console.error(e);
+  } finally {
+    isLoading.value = false;
+  }
 });
 
 const favouritesCards = computed(() => {
@@ -139,13 +147,16 @@ const handleChooseMeal = (section: string) => {
         </li>
       </ul>
     </nav>
-    <div class="favourites__content">
+    <div class="favourites__content" :class="{ 'favourites__content_type-loading': isLoading }">
+      <PreloaderComponent v-if="isLoading" />
       <RecipesList
         :cards="paginatedData"
-        v-if="favouritesCards.length"
+        v-if="!isLoading && favouritesCards.length"
         @save-recipe="deleteSavedRecipe"
       />
-      <span class="favourites__warning" v-else>You don't have any favourite recipes yet</span>
+      <span class="favourites__warning" v-else-if="!isLoading && !favouritesCards.length"
+        >You don't have any favourite recipes yet</span
+      >
       <vue-awesome-paginate
         v-if="favouritesCards.length && favouritesCards.length > CARDS_COUNT"
         class="main__pagination"
@@ -164,6 +175,7 @@ const handleChooseMeal = (section: string) => {
   display: flex;
   padding-left: 20px;
   padding-right: 20px;
+  flex-grow: 1;
 
   &__warning {
     margin-top: 150px;
@@ -179,6 +191,13 @@ const handleChooseMeal = (section: string) => {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: auto;
+    flex-grow: 1;
+
+    &_type-loading {
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &__nav {

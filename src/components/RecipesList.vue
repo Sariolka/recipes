@@ -24,6 +24,7 @@ const props = defineProps<{
 <style scoped lang="scss">
 .recipes {
   margin-top: 70px;
+  margin-bottom: 70px;
   width: 100%;
   display: flex;
   flex-direction: column;
