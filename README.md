@@ -1,5 +1,4 @@
-# cooking recipes
-This template should help get you started developing with Vue 3 in Vite.
+# Cooking recipes
 
 ## Project Setup
 
@@ -16,16 +15,3 @@ npm run dev
 email: test@mail.ru
 password: 000000
 ```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-В планах:  
--Добавить больше фильтрации в избранном  
--Вывести рейтинг на карточке  
--Возможно, сделать не ссылку на сторонний сайт, а отдельную страницу для рецепта  
--Добавить возможность оставить свою заметку в карточке рецепта
--Валидация и небольшие изменения формы 
