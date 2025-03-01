@@ -138,7 +138,6 @@ const ratingInPersent = computed(() => {
         <iframe
           v-if="recipe && recipe.original_video_url"
           allowfullscreen
-          allow="autoplay=0;"
           title="Video recipe"
           width="400"
           height="400"
@@ -186,7 +185,7 @@ const ratingInPersent = computed(() => {
 
   &__header {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     gap: 5px 20px;
     margin-bottom: 40px;
@@ -385,9 +384,9 @@ const ratingInPersent = computed(() => {
 
   &__preparation {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: start;
-    gap: 50px;
+    gap: 100px;
 
     @media screen and (max-width: 1023px) {
       grid-template-columns: 1fr;
