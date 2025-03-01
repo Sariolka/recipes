@@ -62,7 +62,6 @@ export const getCurrentRecipe = (id: number): Promise<any> => {
         }
       }
     });
-    // list?from=0&size=30&id=3562
     const baseUrl = `${BASE_URL}recipes/get-more-info?id=${id}`;
 
     xhr.open('GET', baseUrl);
