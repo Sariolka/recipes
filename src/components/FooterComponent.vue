@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
 
 const computerYear = new Date().getFullYear();
 
-const route = useRoute();
 </script>
 
 <template>

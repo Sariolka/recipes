@@ -9,7 +9,7 @@ const store = useAuthStore();
 const props = defineProps<{
   card: CardType;
 }>();
-console.log(props.card);
+
 const isAuthenticated = computed(() => store.token);
 
 const computedTime = computed(() => {
@@ -31,8 +31,6 @@ const ratingInPersent = computed(() => {
   return 0;
 });
 
-// console.log('Rating in percent:',props.card, ratingInPersent.value);
-// console.log(props.card.user_ratings)
 </script>
 
 <template>
