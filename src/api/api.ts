@@ -121,6 +121,7 @@ export const del = async <T>(path: string): Promise<T> => {
 
   return processResponse<T>(response);
 };
+
 export const put = async <T>(path: string, body: unknown): Promise<T> => {
   const response = await fetch(BASE_PATH + path, {
     method: 'PUT',

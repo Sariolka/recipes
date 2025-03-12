@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { computed, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router';
 import { pushTo404 } from '@/helpers/pushTo404.ts';
-import { computed, ref } from 'vue';
 import { getCurrentRecipe, loadSavedRecipes } from '@/api/api.ts';
 import type { CardType, Recipe } from '@/types/types.ts';
 import { useAuthStore } from '@/stores/auth.ts';
@@ -12,13 +12,17 @@ const store = useAuthStore();
 const route = useRoute();
 const recipe = ref<Recipe>();
 const isLoading = ref(true);
-const savedRecipes = ref<CardType[]>([]);
+const state = reactive({
+  savedRecipes: [] as CardType[]
+});
+
 const isSaved = ref(false);
+const savedNotes = ref<string | string[]>('')
 
 const loadRecipe = async () => {
   const recipeId = Number(route.params.id);
   if (store.user) {
-    savedRecipes.value = await loadSavedRecipes();
+    state.savedRecipes = await loadSavedRecipes();
   }
   if (isNaN(recipeId) || recipeId <= 0) {
     console.error('Произошла ошибка');
@@ -29,7 +33,11 @@ const loadRecipe = async () => {
     recipe.value = await getCurrentRecipe(recipeId);
     if (recipe.value) {
       // @ts-expect-error @typescript-eslint/ban-ts-comment
-      isSaved.value = !!savedRecipes.value.find((i) => Number(i.id) === recipe.value.id);
+      isSaved.value = !!state.savedRecipes.find((i) => Number(i.id) === recipe.value.id);
+      const foundRecipe = state.savedRecipes.find((i) => {
+        return recipe.value && Number(i.id) === recipe.value.id;
+      });
+      savedNotes.value = foundRecipe ? foundRecipe.note : '';
     }
   } catch (error) {
     console.error(error);
@@ -40,6 +48,7 @@ const loadRecipe = async () => {
 };
 
 loadRecipe();
+
 const nutritionData = computed(() => {
   if (recipe.value) {
     return {
@@ -53,12 +62,14 @@ const nutritionData = computed(() => {
   }
   return {};
 });
+
 const ingredients = computed(() => {
   if (recipe.value) {
     return recipe.value.sections[0].components.map((item) => item.raw_text);
   }
   return null;
 });
+
 const instructions = computed(() => {
   if (recipe.value) {
     return recipe.value.instructions.map((item) => item.display_text);
@@ -113,9 +124,14 @@ const ratingInPersent = computed(() => {
               </div>
             </li>
           </ul>
-          <p class="recipe-page__description" v-if="recipe.description">{{ recipe.description }}</p>
-          <div class="recipe-page__note"></div>
+
+            <p class="recipe-page__description" v-if="recipe.description">{{ recipe.description }}</p>
+
+
+
         </div>
+<!--        <button class="recipe-page__btn-add-note"></button>-->
+<!--        <ul class="recipe-page__note" v-if="recipe.notes"><li>skdjfh</li></ul>-->
       </div>
 
       <div class="recipe-page__preparation">
@@ -254,7 +270,6 @@ const ratingInPersent = computed(() => {
   &__img {
     width: auto;
     height: auto;
-    aspect-ratio: 1.8/1.5;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

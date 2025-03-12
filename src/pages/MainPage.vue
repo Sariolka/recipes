@@ -85,7 +85,8 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
             id: recipe.id.toString(),
             isSaved: isSaved,
             tags: recipe.tags,
-            user_ratings: recipe.user_ratings
+            user_ratings: recipe.user_ratings,
+            note: recipe.note
           };
         })
       );
