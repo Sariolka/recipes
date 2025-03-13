@@ -6,8 +6,8 @@ const computerYear = new Date().getFullYear();
 
 <template>
   <footer class="footer">
-    <a href="https://t.me/Sariolka" class="footer__link footer__link_type-tg"></a>
-    <a href="https://github.com/Sariolka" class="footer__link footer__link_type-gh"></a>
+    <a href="https://t.me/Sariolka" class="footer__link footer__link_type-tg" aria-label="Перейти в Телеграм"></a>
+    <a href="https://github.com/Sariolka" class="footer__link footer__link_type-gh" aria-label="Перейти на страницу Github"></a>
     <div class="footer__auth">Copyright © {{ computerYear }}</div>
   </footer>
 </template>

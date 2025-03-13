@@ -47,14 +47,14 @@ watch(
     </div>
     <div class="search__select-container">
       <div class="select is-normal has-icons-left">
-        <select id="time-select" v-model="selectedTime" class="search__select">
+        <select id="time-select" v-model="selectedTime" class="search__select" aria-label="Select cooking time">
           <option v-for="option in timeOptions" :key="option.value" :value="option.value">
             {{ option.text }}
           </option>
         </select>
       </div>
       <div class="search__select select is-normal has-icons-left">
-        <select id="meal-select" v-model="selectedMeal" class="search__select">
+        <select id="meal-select" v-model="selectedMeal" class="search__select" aria-label="Select meal">
           <option v-for="option in mealOptions" :key="option.value" :value="option.value">
             {{ option.text }}
           </option>
