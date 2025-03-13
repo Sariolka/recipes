@@ -201,3 +201,8 @@ export interface UserRatings {
   count_positive: number;
   score: number;
 }
+
+export interface INote {
+  text: string;
+  id: number;
+}

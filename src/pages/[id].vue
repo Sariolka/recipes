@@ -7,6 +7,7 @@ import type { CardType, Recipe } from '@/types/types.ts';
 import { useAuthStore } from '@/stores/auth.ts';
 import SymbolComponent from '@/components/SymbolComponent.vue';
 import PreloaderComponent from '@/components/PreloaderComponent.vue';
+import NotesList from '@/components/NotesList.vue'
 
 const store = useAuthStore();
 const route = useRoute();
@@ -130,8 +131,8 @@ const ratingInPersent = computed(() => {
 
 
         </div>
-<!--        <button class="recipe-page__btn-add-note"></button>-->
-<!--        <ul class="recipe-page__note" v-if="recipe.notes"><li>skdjfh</li></ul>-->
+
+<!--        <NotesList />-->
       </div>
 
       <div class="recipe-page__preparation">
