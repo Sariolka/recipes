@@ -159,7 +159,6 @@ const handleChooseMeal = (section: string) => {
       >
       <vue-awesome-paginate
         v-if="favouritesCards.length && favouritesCards.length > CARDS_COUNT"
-        class="main__pagination"
         :total-items="favouritesCards.length"
         :items-per-page="CARDS_COUNT"
         :max-pages-shown="3"

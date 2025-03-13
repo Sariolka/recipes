@@ -22,11 +22,12 @@ body {
   display: flex;
   list-style: none;
   padding-left: 0;
-  margin-top: 30px;
+  margin-top: auto;
+  margin-bottom: 10px;
 }
 
 .paginate-buttons {
-  color: #fff;
+  color: #000;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 24px;
@@ -39,7 +40,7 @@ body {
 }
 
 .paginate-buttons:hover {
-  color: #ababab;
+  color: #131313;
 }
 
 .active-page {
