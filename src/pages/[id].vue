@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { v4 as uuidv4 } from 'uuid';
 import { pushTo404 } from '@/helpers/pushTo404.ts';
 import { getCurrentRecipe, loadSavedRecipes, saveNotes } from '@/api/api.ts';
 import type { CardType, INote, Recipe } from '@/types/types.ts';
@@ -22,7 +23,6 @@ const notes = ref<INote[]>([]);
 const foundRecipe = ref<CardType>();
 const isInProcess = ref(false);
 const isInputActive = ref<string | null>(null);
-
 
 const loadRecipe = async () => {
   const recipeId = Number(route.params.id);
@@ -97,7 +97,7 @@ const handleAddNewNote = () => {
   if (foundRecipe.value) {
     const newNote = {
       text: '',
-      id: notes.value.length + '',
+      id: uuidv4(),
       recipeId: foundRecipe.value.id
     };
     notes.value.push(newNote);

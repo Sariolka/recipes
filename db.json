@@ -281,13 +281,18 @@
       },
       "notes": [
         {
-          "text": "Заметка 1",
-          "id": "0",
+          "text": "Первая заметка",
+          "id": "bcd1efcb-328e-4671-86bf-f5353594c53b",
           "recipeId": "444"
         },
         {
-          "text": "3 заметка",
-          "id": "2",
+          "text": "Вторая заметка",
+          "id": "4ab6f562-9084-49f5-8e43-f2b316425251",
+          "recipeId": "444"
+        },
+        {
+          "text": "In a large bowl, combine the ground beef, breadcrumbs, onion, egg, ½ tablespoon salt, and ½ tablespoon pepper, mixing until evenly combined. In a large bowl, combine the ground beef, breadcrumbs, onion, egg, ½ tablespoon salt, and ½ tablespoon pepper, mixing until evenly combined. In a large bowl, combine the ground beef, breadcrumbs, onion, egg, ½ tablespoon salt, and ½ tablespoon pepper, mixing ",
+          "id": "505670e2-341b-4ef8-b835-fabf64e89dca",
           "recipeId": "444"
         }
       ]
