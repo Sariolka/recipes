@@ -110,7 +110,7 @@ watch(
 
   &__icon {
     position: absolute;
-    bottom: 14px;
+    bottom: 11px;
     left: 12px;
     background-image: url('../icons/search.svg');
     background-repeat: no-repeat;
@@ -145,7 +145,7 @@ watch(
     font-weight: 700;
     line-height: normal;
     outline: transparent;
-    color: #ffffff;
+    color: #fff;
   }
 
   &__select {

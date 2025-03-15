@@ -40,8 +40,8 @@ export const useAuthStore = defineStore('auth', {
   },
   getters: {
     isAuthenticated: (state) => !!state.token,
-    getUser: (state) => () => {
-      return state.user;
+    getUser: () => () => {
+      return localStorage.getItem('user');
     }
   }
 });

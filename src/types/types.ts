@@ -6,7 +6,7 @@ export interface CardType {
   minutes: number;
   id: string;
   isSaved?: boolean | null;
-  note: string | string[];
+  notes: INote[];
   user_ratings: UserRatings;
   tags: {
     display_name: string;
@@ -204,5 +204,6 @@ export interface UserRatings {
 
 export interface INote {
   text: string;
-  id: number;
+  id: string;
+  recipeId: string;
 }

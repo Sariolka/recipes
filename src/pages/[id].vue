@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { pushTo404 } from '@/helpers/pushTo404.ts';
-import { getCurrentRecipe, loadSavedRecipes } from '@/api/api.ts';
-import type { CardType, Recipe } from '@/types/types.ts';
+import { getCurrentRecipe, loadSavedRecipes, saveNotes } from '@/api/api.ts';
+import type { CardType, INote, Recipe } from '@/types/types.ts';
 import { useAuthStore } from '@/stores/auth.ts';
 import SymbolComponent from '@/components/SymbolComponent.vue';
 import PreloaderComponent from '@/components/PreloaderComponent.vue';
-import NotesList from '@/components/NotesList.vue'
+import NotesList from '@/components/NotesList.vue';
 
 const store = useAuthStore();
 const route = useRoute();
@@ -16,9 +16,11 @@ const isLoading = ref(true);
 const state = reactive({
   savedRecipes: [] as CardType[]
 });
-
+const isNotesOpen = ref(false);
 const isSaved = ref(false);
-const savedNotes = ref<string | string[]>('')
+const notes = ref<INote[]>([]);
+const foundRecipe = ref<CardType>();
+const isInProcess = ref(false);
 
 const loadRecipe = async () => {
   const recipeId = Number(route.params.id);
@@ -35,10 +37,10 @@ const loadRecipe = async () => {
     if (recipe.value) {
       // @ts-expect-error @typescript-eslint/ban-ts-comment
       isSaved.value = !!state.savedRecipes.find((i) => Number(i.id) === recipe.value.id);
-      const foundRecipe = state.savedRecipes.find((i) => {
+      foundRecipe.value = state.savedRecipes.find((i) => {
         return recipe.value && Number(i.id) === recipe.value.id;
       });
-      savedNotes.value = foundRecipe ? foundRecipe.note : '';
+      notes.value = foundRecipe.value ? foundRecipe.value.notes : [];
     }
   } catch (error) {
     console.error(error);
@@ -78,16 +80,81 @@ const instructions = computed(() => {
   return null;
 });
 
-const ratingInPersent = computed(() => {
+const ratingInPercent = computed(() => {
   if (recipe.value && recipe.value.user_ratings) {
     return Math.round(recipe.value.user_ratings.score * 100);
   }
   return 0;
 });
+
+const handleOpenNotes = () => {
+  isNotesOpen.value = !isNotesOpen.value;
+};
+
+const isInputActive = ref<string | null>(null);
+
+const handleAddNewNote = () => {
+  if (foundRecipe.value) {
+    const newNote = {
+      text: '',
+      id: notes.value.length + '',
+      recipeId: foundRecipe.value.id
+    };
+    notes.value.push(newNote);
+    isNotesOpen.value = true;
+    isInputActive.value = newNote.id;
+  }
+};
+
+const handleEditNote = async (note: INote) => {
+  if (isInProcess.value) return;
+  if (foundRecipe.value) {
+    try {
+      isInProcess.value = true;
+      if (isInputActive.value === note.id) {
+        const index = notes.value.findIndex((item) => item.id === note.id);
+        if (index !== -1) {
+          if (note.text.length) {
+            const updatedNotes = [...notes.value];
+            updatedNotes[index] = { ...updatedNotes[index], text: note.text };
+            await saveNotes(updatedNotes, foundRecipe.value.id);
+            notes.value[index].text = note.text;
+          } else {
+            await handleDeleteNote(note.id);
+          }
+          isInputActive.value = null;
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      isInProcess.value = false;
+    }
+  }
+};
+
+const handleActivateInput = (id: string) => {
+  isInputActive.value = id;
+};
+
+const handleDeleteNote = async (id: string) => {
+  if (isInProcess.value) return;
+  try {
+    isInProcess.value = true;
+    const currentNotes = notes.value.filter((item) => item.id !== id);
+    const updatedNotes = [...currentNotes];
+    await saveNotes(updatedNotes, foundRecipe.value.id);
+    notes.value = currentNotes;
+  } catch (e) {
+    console.error(e);
+  } finally {
+    isInProcess.value = false;
+  }
+};
 </script>
 
 <template>
-  <section class="recipe-page" :class="{ 'recipe-page_type-loading': isLoading }">
+  <section class="recipe-page" :class="{ 'recipe-page_loading': isLoading }">
     <PreloaderComponent v-if="isLoading" />
     <article class="recipe-page__article" v-else-if="recipe && !isLoading">
       <div class="recipe-page__header">
@@ -97,7 +164,7 @@ const ratingInPersent = computed(() => {
         >
           <div class="recipe-page__rating">
             <div class="recipe-page__hand" :class="{ 'recipe-page__hand_fill': isSaved }"></div>
-            {{ ratingInPersent }}% like it!
+            {{ ratingInPercent }}% like it!
           </div>
         </div>
         <div class="recipe-page__header-side">
@@ -119,22 +186,41 @@ const ratingInPersent = computed(() => {
         <div class="recipe-page__body">
           <ul class="recipe-page__nut">
             <li class="recipe-page__li" v-for="(value, key) in nutritionData" :key="key">
-              <div class="recipe-page__nutri">{{ key }}</div>
-              <div class="recipe-page__nutritio">
+              <div class="recipe-page__nutrition-title">{{ key }}</div>
+              <div class="recipe-page__nutrition">
                 {{ value }}{{ key === 'Calories' ? 'kcal' : 'g' }}
               </div>
             </li>
           </ul>
-
-            <p class="recipe-page__description" v-if="recipe.description">{{ recipe.description }}</p>
-
-
-
+          <p class="recipe-page__description" v-if="recipe.description">{{ recipe.description }}</p>
         </div>
-
-<!--        <NotesList />-->
       </div>
-
+      <div class="recipe-page__notes" v-if="isSaved">
+        <div class="recipe-page__control">
+          <button
+            class="recipe-page__button recipe-page__button_type-add-note"
+            :class="{ 'recipe-page__button_type-add-note_disabled': notes.length > 9 }"
+            aria-label="Add note"
+            @click="handleAddNewNote"
+          ></button>
+          <p class="recipe-page__add-text" v-if="notes.length === 0">Add your first note!</p>
+          <button
+            class="recipe-page__button recipe-page__button_type-open"
+            :class="{ 'recipe-page__button_type-open_rotate': isNotesOpen }"
+            @click="handleOpenNotes"
+            aria-label="Open notes"
+            v-if="notes.length !== 0"
+          ></button>
+        </div>
+        <NotesList
+          :notes="notes"
+          v-if="notes && isNotesOpen"
+          @open="handleActivateInput"
+          :isInputActive="isInputActive"
+          @delete="handleDeleteNote"
+          @edit="handleEditNote"
+        />
+      </div>
       <div class="recipe-page__preparation">
         <div>
           <h2 class="recipe-page__subtitle">Preparation</h2>
@@ -151,7 +237,6 @@ const ratingInPersent = computed(() => {
             </li>
           </ul>
         </div>
-
         <iframe
           v-if="recipe && recipe.original_video_url"
           allowfullscreen
@@ -180,7 +265,7 @@ const ratingInPersent = computed(() => {
   height: auto;
   flex-grow: 1;
 
-  &_type-loading {
+  &_loading {
     align-items: center;
     justify-content: center;
   }
@@ -423,6 +508,47 @@ const ratingInPersent = computed(() => {
     @media screen and (max-width: 1023px) {
       padding-bottom: 10px;
       border-bottom: 4px dotted #4d4d4d;
+    }
+  }
+
+  &__notes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  &__control {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__button {
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &_type-add-note {
+      background-image: url('@/icons/plus.svg');
+
+      &_disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+
+    &_type-open {
+      background-image: url('@/icons/arrow.svg');
+      transition: transform 0.3s ease-in-out;
+
+      &_rotate {
+        transform: rotate(-180deg);
+      }
     }
   }
 }

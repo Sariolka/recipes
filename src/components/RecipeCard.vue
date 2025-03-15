@@ -30,7 +30,6 @@ const ratingInPersent = computed(() => {
   }
   return 0;
 });
-
 </script>
 
 <template>
