@@ -108,12 +108,12 @@ const handleClose = () => {
             <span class="modal__error">{{ errors.userName }}</span>
           </div>
           <div class="modal__container">
-            <label for="email">Email</label>
+            <label for="email-reg">Email</label>
             <input
               class="input modal__input"
               v-model="email"
               type="email"
-              id="email"
+              id="email-reg"
               name="email"
             />
             <span class="modal__error">{{ errors.email }}</span>

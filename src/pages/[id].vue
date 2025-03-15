@@ -21,6 +21,8 @@ const isSaved = ref(false);
 const notes = ref<INote[]>([]);
 const foundRecipe = ref<CardType>();
 const isInProcess = ref(false);
+const isInputActive = ref<string | null>(null);
+
 
 const loadRecipe = async () => {
   const recipeId = Number(route.params.id);
@@ -90,8 +92,6 @@ const ratingInPercent = computed(() => {
 const handleOpenNotes = () => {
   isNotesOpen.value = !isNotesOpen.value;
 };
-
-const isInputActive = ref<string | null>(null);
 
 const handleAddNewNote = () => {
   if (foundRecipe.value) {

@@ -189,7 +189,6 @@ onMounted(async () => {
     </p>
     <vue-awesome-paginate
       v-if="cards.length && totalCount > CARDS_COUNT"
-      class="main__pagination"
       :total-items="totalCount"
       :items-per-page="CARDS_COUNT"
       :max-pages-shown="3"
