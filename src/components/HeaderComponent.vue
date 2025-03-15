@@ -5,14 +5,14 @@ import router from '@/router/router.ts';
 import { useRoute } from 'vue-router';
 import logo from '@/icons/Subtract.png';
 
-const store = useAuthStore();
-const user = computed(() => store.user);
-const isAuthenticated = computed(() => store.isAuthenticated);
-const route = useRoute();
-
 const props = defineProps<{
   hasData: boolean;
 }>();
+
+const store = useAuthStore();
+const isAuthenticated = computed(() => store.isAuthenticated);
+const route = useRoute();
+const user = store.getUser();
 
 const handlePushToMain = () => {
   if (route.path !== '') {

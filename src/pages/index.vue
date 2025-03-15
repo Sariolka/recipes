@@ -31,6 +31,7 @@ const toggleSave = async (recipe: CardType) => {
   if (index !== -1) {
     cards.value[index].isSaved = !cards.value[index].isSaved;
     if (cards.value[index].isSaved) {
+      console.log(recipe);
       await saveRecipe(recipe);
     } else {
       savedRecipes.value = await loadSavedRecipes();
@@ -85,7 +86,8 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
             id: recipe.id.toString(),
             isSaved: isSaved,
             tags: recipe.tags,
-            user_ratings: recipe.user_ratings
+            user_ratings: recipe.user_ratings,
+            notes: []
           };
         })
       );
@@ -94,6 +96,7 @@ const getRecipes = async (query: string, counter: number, timeTag?: string, meal
     }
     sessionStorage.setItem('currentCards', JSON.stringify(cards.value));
     sessionStorage.setItem('totalCount', JSON.stringify(totalCount.value));
+    console.log(cards.value);
     return cards.value;
   } catch (err: any) {
     if (err.statusCode === 429) {

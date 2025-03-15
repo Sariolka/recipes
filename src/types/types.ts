@@ -6,7 +6,7 @@ export interface CardType {
   minutes: number;
   id: string;
   isSaved?: boolean | null;
-  note?: string;
+  notes: INote[];
   user_ratings: UserRatings;
   tags: {
     display_name: string;
@@ -100,7 +100,7 @@ interface Credit {
 
 interface Instruction {
   appliance: string | null;
-  display_text: string; //!
+  display_text: string;
   end_time: number;
   hacks: Hack[];
   id: number;
@@ -200,4 +200,10 @@ export interface UserRatings {
   count_negative: number;
   count_positive: number;
   score: number;
+}
+
+export interface INote {
+  text: string;
+  id: string;
+  recipeId: string;
 }

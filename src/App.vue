@@ -93,7 +93,7 @@ onMounted(async () => {
       @logout="handleLogout"
     />
     <router-view @open-modal="handleOpenWarningModal" />
-    <FooterComponent />
+    <FooterComponent :hasData="hasData" />
     <ModalRegister
       :is-open="isRegisterModalOpen"
       @close="closeRegisterModal"

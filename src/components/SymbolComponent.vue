@@ -23,7 +23,7 @@ const props = defineProps<{
   color: #fff;
   background-color: #323232;
   border-radius: 50%;
-  border: 1px solid #fff;
+  border: 1px solid #000;
   aspect-ratio: 1;
 }
 </style>

@@ -1,9 +1,6 @@
 import { BASE_URL, HOST, KEY, KEY_NAME, URL_NAME } from '../../config.ts';
-import type { CardType } from '@/types/types.ts';
+import type { CardType, INote } from '@/types/types.ts';
 import { useAuthStore } from '@/stores/auth.ts';
-//
-// const store = useAuthStore();
-// const token = store.token;
 
 export const fetchRecipes = (
   query: string,
@@ -121,9 +118,20 @@ export const del = async <T>(path: string): Promise<T> => {
 
   return processResponse<T>(response);
 };
+
 export const put = async <T>(path: string, body: unknown): Promise<T> => {
   const response = await fetch(BASE_PATH + path, {
     method: 'PUT',
+    headers: makeHeaders(),
+    body: JSON.stringify(body)
+  });
+
+  return processResponse<T>(response);
+};
+
+export const patch = async <T>(path: string, body: unknown): Promise<T> => {
+  const response = await fetch(BASE_PATH + path, {
+    method: 'PATCH',
     headers: makeHeaders(),
     body: JSON.stringify(body)
   });
@@ -153,4 +161,8 @@ export const register = async (user: object) => {
 
 export const signin = async (user: object) => {
   return post<any>(`/login`, user);
+};
+
+export const saveNotes = async (notes: INote[], id: string) => {
+  return patch<void>(`/favourites/${id}`, { notes });
 };

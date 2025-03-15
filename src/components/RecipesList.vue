@@ -5,6 +5,12 @@ import type { CardType } from '@/types/types.ts';
 const props = defineProps<{
   cards: CardType[];
 }>();
+
+const emit = defineEmits(['save-recipe']);
+
+const handleSaveRecipe = (card: CardType) => {
+  emit('save-recipe', card);
+};
 </script>
 
 <template>
@@ -15,7 +21,7 @@ const props = defineProps<{
         v-for="card in cards"
         :key="card.id"
         :card="card"
-        @save-recipe="$emit('save-recipe', card)"
+        @save-recipe="handleSaveRecipe(card)"
       />
     </ul>
   </section>
