@@ -31,6 +31,7 @@ const handleToggleInput = () => {
         v-if="isInputActive || !changedText"
         autofocus
         v-model="changedText"
+        maxlength="400"
       />
       <p class="recipe-note__text" v-else>{{ note.text }}</p>
     </div>
