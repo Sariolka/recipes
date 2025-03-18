@@ -8,22 +8,18 @@ interface AuthState {
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
     return {
-      user: user,
-      token: token,
+      user: localStorage.getItem('user') || null,
+      token: localStorage.getItem('token') || null,
       data: false
     };
   },
   actions: {
-    // @ts-expect-error @typescript-eslint/ban-ts-comment
-    setUser(user) {
+    setUser(user: string) {
       this.user = user;
       localStorage.setItem('user', user);
     },
-    // @ts-expect-error @typescript-eslint/ban-ts-comment
-    setToken(token) {
+    setToken(token: string) {
       this.token = token;
       localStorage.setItem('token', token);
     },
@@ -40,8 +36,6 @@ export const useAuthStore = defineStore('auth', {
   },
   getters: {
     isAuthenticated: (state) => !!state.token,
-    getUser: () => () => {
-      return localStorage.getItem('user');
-    }
+    getUser: () => localStorage.getItem('user')
   }
 });
