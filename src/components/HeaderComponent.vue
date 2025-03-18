@@ -12,7 +12,7 @@ const props = defineProps<{
 const store = useAuthStore();
 const isAuthenticated = computed(() => store.isAuthenticated);
 const route = useRoute();
-const user = store.getUser();
+const user = store.getUser;
 
 const handlePushToMain = () => {
   if (route.path !== '') {
